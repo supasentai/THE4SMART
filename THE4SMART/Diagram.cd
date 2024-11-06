@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="back_menu">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAgAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>back_menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Product" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAAAAAAAAAAQAAAAAAIAgEAgAAAEAAAAAAABAEAIEAA=</HashCode>
+      <FileName>back_products.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="list_Manager" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>list_Manager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.826" Collapsed="true" />
+  </Class>
+  <Class Name="list_product" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAgEAAAgAAAAAAAAgAABAQ=</HashCode>
+      <FileName>list_product.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProductList">
+    <Position X="7" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>list_product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="list_Staff" BaseTypeListCollapsed="true">
+    <Position X="5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIgAAAAAAAAAAgAAAAAQAAgACAAAAAIAAAAAAAAAAI=</HashCode>
+      <FileName>list_Staff.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.695" Collapsed="true" />
+  </Class>
+  <Class Name="StaffList">
+    <Position X="5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>list_Staff.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="THE4SMART.User" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAABAAAAAAgCAAAAIAAAAAAAIAAAAI=</HashCode>
+      <FileName>back_user.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="THE4SMART.Manager" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>back_user.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="THE4SMART.Staff" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAgAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>back_user.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="THE4SMART.form_Home" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAKgJAgACAAgBMIAAiAAIgGEgEiCOgUAEAAAABAAAA=</HashCode>
+      <FileName>form_Home.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="THE4SMART.form_homepage" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/3AAB/g+AGAEZJAVIYSAdCSCAHl4hMSOQAAAy8BCJPA=</HashCode>
+      <FileName>form_homepage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="THE4SMART.form_policy" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>form_policy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="THE4SMART.Program" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="THE4SMART.Properties.Resources" Collapsed="true">
+    <Position X="0.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="THE4SMART.Properties.Settings" Collapsed="true">
+    <Position X="0.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="THE4SMART.form_aboutus" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>form_aboutus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
