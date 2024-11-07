@@ -1,0 +1,139 @@
+{
+  "Products": [
+    {
+      "ProductId": "1",
+      "ProductQuantity": 100,
+      "ProductPrice": 5,
+      "ProductName": "C\u00E0 chua",
+      "ProductManufacturer": "VTP",
+      "ProductCategory": "Th\u1EF1c ph\u1EA9m",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "2",
+      "ProductQuantity": 100,
+      "ProductPrice": 3,
+      "ProductName": "C\u00E0 r\u1ED1t",
+      "ProductManufacturer": "VTP",
+      "ProductCategory": "Th\u1EF1c ph\u1EA9m",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "3",
+      "ProductQuantity": 100,
+      "ProductPrice": 4,
+      "ProductName": "B\u00ED \u0111ao",
+      "ProductManufacturer": "VTP",
+      "ProductCategory": "Th\u1EF1c ph\u1EA9m",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "4",
+      "ProductQuantity": 100,
+      "ProductPrice": 2,
+      "ProductName": "Khoai lang",
+      "ProductManufacturer": "VTP",
+      "ProductCategory": "Th\u1EF1c ph\u1EA9m",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "5",
+      "ProductQuantity": 100,
+      "ProductPrice": 6,
+      "ProductName": "B\u00ED \u0111\u1ECF",
+      "ProductManufacturer": "VTP",
+      "ProductCategory": "Th\u1EF1c ph\u1EA9m",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "6",
+      "ProductQuantity": 100,
+      "ProductPrice": 500,
+      "ProductName": "IPhone 17",
+      "ProductManufacturer": "Lowtech",
+      "ProductCategory": "\u0110i\u1EC7n t\u1EED",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "7",
+      "ProductQuantity": 100,
+      "ProductPrice": 800,
+      "ProductName": "Laptop",
+      "ProductManufacturer": "Lowtech",
+      "ProductCategory": "\u0110i\u1EC7n t\u1EED",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "8",
+      "ProductQuantity": 100,
+      "ProductPrice": 120,
+      "ProductName": "Tai nghe Bluetooth",
+      "ProductManufacturer": "Lowtech",
+      "ProductCategory": "\u0110i\u1EC7n t\u1EED",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "9",
+      "ProductQuantity": 100,
+      "ProductPrice": 300,
+      "ProductName": "Tablet",
+      "ProductManufacturer": "Lowtech",
+      "ProductCategory": "\u0110i\u1EC7n t\u1EED",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "10",
+      "ProductQuantity": 100,
+      "ProductPrice": 50,
+      "ProductName": "Chu\u1ED9t kh\u00F4ng d\u00E2y",
+      "ProductManufacturer": "Lowtech",
+      "ProductCategory": "\u0110i\u1EC7n t\u1EED",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "11",
+      "ProductQuantity": 100,
+      "ProductPrice": 20,
+      "ProductName": "\u00C1o thun",
+      "ProductManufacturer": "UNIQLA",
+      "ProductCategory": "Qu\u1EA7n \u00E1o",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "12",
+      "ProductQuantity": 100,
+      "ProductPrice": 30,
+      "ProductName": "Qu\u1EA7n jeans",
+      "ProductManufacturer": "UNIQLA",
+      "ProductCategory": "Qu\u1EA7n \u00E1o",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "13",
+      "ProductQuantity": 100,
+      "ProductPrice": 25,
+      "ProductName": "\u00C1o kho\u00E1c",
+      "ProductManufacturer": "UNIQLA",
+      "ProductCategory": "Qu\u1EA7n \u00E1o",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "14",
+      "ProductQuantity": 100,
+      "ProductPrice": 15,
+      "ProductName": "M\u0169 l\u01B0\u1EE1i trai",
+      "ProductManufacturer": "UNIQLA",
+      "ProductCategory": "Qu\u1EA7n \u00E1o",
+      "ProductDiscount": 0
+    },
+    {
+      "ProductId": "15",
+      "ProductQuantity": 100,
+      "ProductPrice": 40,
+      "ProductName": "\u00C1o s\u01A1 mi",
+      "ProductManufacturer": "UNIQLA",
+      "ProductCategory": "Qu\u1EA7n \u00E1o",
+      "ProductDiscount": 0
+    }
+  ]
+}
