@@ -76,7 +76,7 @@
             // 
             // btn_SignUp
             // 
-            this.btn_SignUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(104)))), ((int)(((byte)(74)))));
+            this.btn_SignUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btn_SignUp.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(104)))), ((int)(((byte)(74)))));
             this.btn_SignUp.FlatAppearance.BorderSize = 0;
             this.btn_SignUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
@@ -87,7 +87,7 @@
             this.btn_SignUp.Name = "btn_SignUp";
             this.btn_SignUp.Size = new System.Drawing.Size(150, 50);
             this.btn_SignUp.TabIndex = 23;
-            this.btn_SignUp.Text = "SIGN UP";
+            this.btn_SignUp.Text = "MANAGER";
             this.btn_SignUp.UseVisualStyleBackColor = false;
             this.btn_SignUp.Click += new System.EventHandler(this.btn_SignUp_Click);
             // 
@@ -110,6 +110,7 @@
             // 
             this.panel_SignIn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel_SignIn.BackgroundImage")));
             this.panel_SignIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel_SignIn.Controls.Add(this.panel_SignUp);
             this.panel_SignIn.Controls.Add(this.llb_ReturnFromSignIn);
             this.panel_SignIn.Controls.Add(this.llb_SignUp);
             this.panel_SignIn.Controls.Add(this.label2);
@@ -119,7 +120,7 @@
             this.panel_SignIn.Controls.Add(this.txt_SignInPassword);
             this.panel_SignIn.Controls.Add(this.btn_SignIn2);
             this.panel_SignIn.Controls.Add(this.pictureBox1);
-            this.panel_SignIn.Location = new System.Drawing.Point(0, 0);
+            this.panel_SignIn.Location = new System.Drawing.Point(12, 12);
             this.panel_SignIn.Name = "panel_SignIn";
             this.panel_SignIn.Size = new System.Drawing.Size(720, 480);
             this.panel_SignIn.TabIndex = 24;
@@ -246,7 +247,7 @@
             this.panel_SignUp.Controls.Add(this.txt_SignUpPassword);
             this.panel_SignUp.Controls.Add(this.btn_SignUpNext);
             this.panel_SignUp.Controls.Add(this.pictureBox3);
-            this.panel_SignUp.Location = new System.Drawing.Point(0, 0);
+            this.panel_SignUp.Location = new System.Drawing.Point(23, 20);
             this.panel_SignUp.Name = "panel_SignUp";
             this.panel_SignUp.Size = new System.Drawing.Size(720, 480);
             this.panel_SignUp.TabIndex = 33;
@@ -383,7 +384,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(702, 433);
-            this.Controls.Add(this.panel_SignUp);
             this.Controls.Add(this.panel_SignIn);
             this.Controls.Add(this.btn_SignUp);
             this.Controls.Add(this.btn_SignIn);

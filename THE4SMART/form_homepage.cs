@@ -8,6 +8,8 @@ using System.Text;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using System.Drawing.Printing;
+using static THE4SMART.form_homepage;
 
 namespace THE4SMART
 {
@@ -240,7 +242,7 @@ namespace THE4SMART
 
             if (productsWrapper != null && productsWrapper.Products != null)
             {
-                var uniqueCategories = productsWrapper.Products
+                List<string> uniqueCategories = productsWrapper.Products
                     .Select(product => product.ProductCategory) // Sửa lại để lấy ProductCategory
                     .Distinct()
                     .ToList();
@@ -262,7 +264,7 @@ namespace THE4SMART
 
             if (selectedCategory == null) return;
 
-            var filteredProducts = ProductList.Products
+            List<string> filteredProducts = ProductList.Products
                 .Where(product => product.ProductCategory == selectedCategory)
                 .Select(product => product.ProductName)
                 .ToList();
@@ -324,12 +326,14 @@ namespace THE4SMART
 
             dataGridViewStorage.DataSource = null;
             dataGridViewStorage.DataSource = dataTableProduct(ProductList.Products);
+
         }
 
         private DataTable dataTableCart(List<Product> products)
         {
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("N0");
+            dataTable.Columns.Add("ID");
             dataTable.Columns.Add("Name");
             dataTable.Columns.Add("Price");
             dataTable.Columns.Add("Quantity");
@@ -339,7 +343,7 @@ namespace THE4SMART
             int i = 1;
             foreach (Product product in products)
             {
-                dataTable.Rows.Add(i, product.ProductName, product.ProductPrice, txt_CartAmount.Text, cbb_Discount.Text, product.amountCal(product.ProductPrice, int.Parse(txt_CartAmount.Text), float.Parse(cbb_Discount.Text))); // Adjust properties accordingly
+                dataTable.Rows.Add(i, product.ProductId, product.ProductName, product.ProductPrice, txt_CartAmount.Text, cbb_Discount.Text, product.amountCal(product.ProductPrice, int.Parse(txt_CartAmount.Text), float.Parse(cbb_Discount.Text))); // Adjust properties accordingly
                 i++;
             }
             return dataTable;
@@ -349,54 +353,68 @@ namespace THE4SMART
         {
             // Retrieve product by ID from the list
             Product selectedProduct = ProductList.CheckProduct(txt_CartID.Text); // use the entered Product ID
-            if (selectedProduct != null)
+            int temporary;
+            if (int.Parse(txt_CartQuantity.Text) > 0 && int.Parse(txt_CartQuantity.Text) >= int.Parse(txt_CartAmount.Text))
             {
-                // Parse quantity and discount inputs
-                int quantity;
-                float discount;
-                if (!int.TryParse(txt_CartAmount.Text, out quantity) || quantity <= 0)
-                {
-                    MessageBox.Show("Please enter a valid quantity.");
-                    return;
-                }
-                if (!float.TryParse(cbb_Discount.Text, out discount))
-                {
-                    MessageBox.Show("Please enter a valid discount.");
-                    return;
-                }
 
-                // Calculate amount
-                float amount = selectedProduct.amountCal(selectedProduct.ProductPrice, quantity, discount);
-
-                // Check if the product is already in the cart
-                DataTable dataTable = (DataTable)dataGridViewCart.DataSource ?? dataTableCart(new List<Product>());
-                DataRow existingRow = dataTable.AsEnumerable()
-                                               .FirstOrDefault(row => row["Name"].ToString() == selectedProduct.ProductName);
-
-                if (existingRow != null)
+                if (selectedProduct != null)
                 {
-                    // Update the quantity and amount if product is already in the cart
-                    int existingQuantity = int.Parse(existingRow["Quantity"].ToString());
-                    int newQuantity = existingQuantity + quantity;
-                    existingRow["Quantity"] = newQuantity;
-                    existingRow["Amount"] = selectedProduct.amountCal(selectedProduct.ProductPrice, newQuantity, discount);
+                    // Parse quantity and discount inputs
+                    int quantity;
+                    float discount;
+                    
+                    if (!int.TryParse(txt_CartAmount.Text, out quantity) || quantity <= 0)
+                    {
+                        MessageBox.Show("Please enter a valid quantity.");
+                        return;
+                    }
+                    if (!float.TryParse(cbb_Discount.Text, out discount))
+                    {
+                        MessageBox.Show("Please enter a valid discount.");
+                        return;
+                    }
+
+                    // Calculate amount
+                    float amount = selectedProduct.amountCal(selectedProduct.ProductPrice, quantity, discount);
+
+                    // Check if the product is already in the cart
+                    DataTable dataTable = (DataTable)dataGridViewCart.DataSource ?? dataTableCart(new List<Product>());
+                    DataRow existingRow = dataTable.AsEnumerable()
+                                                   .FirstOrDefault(row => row["Name"].ToString() == selectedProduct.ProductName);
+
+                    if (existingRow != null)
+                    {
+                        // Update the quantity and amount if product is already in the cart
+                        int existingQuantity = int.Parse(existingRow["Quantity"].ToString());
+                        int newQuantity = existingQuantity + quantity;
+                        existingRow["Quantity"] = newQuantity;
+                        existingRow["Amount"] = selectedProduct.amountCal(selectedProduct.ProductPrice, newQuantity, discount);
+                        temporary = newQuantity;
+                    }
+                    else
+                    {
+                        // Add new row for the product
+                        dataTable.Rows.Add(dataTable.Rows.Count + 1, selectedProduct.ProductId, selectedProduct.ProductName, selectedProduct.ProductPrice, quantity, discount, amount);
+                        temporary = quantity;
+                    }
+                    totalPrice += selectedProduct.amountCal(selectedProduct.ProductPrice, quantity, discount);
+                    txt_TotalPrice.Text = totalPrice.ToString();
+
+
+
+                    selectedProduct.ReduceStock(temporary);
+                    txt_CartQuantity.Text = selectedProduct.ProductQuantity.ToString();
+                    // Re-bind updated DataTable to DataGridView
+                    dataGridViewCart.DataSource = dataTable;
                 }
                 else
                 {
-                    // Add new row for the product
-                    dataTable.Rows.Add(dataTable.Rows.Count + 1, selectedProduct.ProductName, selectedProduct.ProductPrice, quantity, discount, amount);
-                    
+                    MessageBox.Show("Selected product not found.");
                 }
-                totalPrice += selectedProduct.amountCal(selectedProduct.ProductPrice, quantity, discount);
-                txt_TotalPrice.Text = totalPrice.ToString();
 
-                // Re-bind updated DataTable to DataGridView
-                dataGridViewCart.DataSource = dataTable;
+                
             }
-            else
-            {
-                MessageBox.Show("Selected product not found.");
-            }
+            
         }
 
         private void btn_CartRemove_Click(object sender, EventArgs e)
@@ -420,41 +438,208 @@ namespace THE4SMART
                             break;
                         }
                     }
+                    // Re-bind the updated DataTable to the DataGridView
+                    float price = Convert.ToSingle(rowToRemove["Price"]);
+                    int quantity = Convert.ToInt32(rowToRemove["Quantity"]);
+                    float discount = Convert.ToSingle(rowToRemove["Discount"]);
 
+                    // Calculate the amount with the discount applied
+                    float amount = price * quantity * (1 - discount / 100);
+
+                    // Subtract the amount from totalPrice
+                    totalPrice -= amount;
+
+                    txt_TotalPrice.Text = totalPrice.ToString();
+
+                    int temporary = int.Parse(txt_CartQuantity.Text);
+                    temporary += quantity;
+                    txt_CartQuantity.Text = temporary.ToString();
                     // Remove the row if found
                     if (rowToRemove != null)
                     {
                         dataTable.Rows.Remove(rowToRemove);
-
                         // Re-index the N0 column (optional, to maintain sequential numbering)
                         for (int i = 0; i < dataTable.Rows.Count; i++)
                         {
                             dataTable.Rows[i]["N0"] = i + 1;
                         }
 
-                        // Re-bind the updated DataTable to the DataGridView
-                        dataGridViewCart.DataSource = dataTable;
+                        
                         MessageBox.Show("Product removed successfully.");
                     }
-                    else
+                    else MessageBox.Show("Product with the specified N0 not found in the cart.");
+                }
+                else MessageBox.Show("Please enter a valid N0 number.");
+            }
+            else MessageBox.Show("Please enter an N0 number.");
+        }
+        private void txt_CartAmount_TextChanged(object sender, EventArgs e)
+        {
+            if (int.Parse(txt_CartAmount.Text) > int.Parse(txt_CartQuantity.Text))
+            {
+                MessageBox.Show("Không đủ số lượng!");
+                txt_CartAmount.Text = txt_CartQuantity.Text;
+            }
+        }
+        private void btn_CartPayment_Click(object sender, EventArgs e)
+        {
+            const string message = "Go to payment?";
+            DialogResult result = MessageBox.Show(message, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Create PrintDocument object for printing
+                PrintDocument printDocument = new PrintDocument();
+                printDocument.PrintPage += new PrintPageEventHandler(printCart_PrintPage);
+
+                // Show PrintDialog and link it to PrintDocument
+                PrintDialog printDialog = new PrintDialog();
+                printDialog.Document = printDocument; // Link PrintDocument to PrintDialog
+
+                // Show the PrintDialog and print if user clicks OK
+                if (printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
                     {
-                        MessageBox.Show("Product with the specified N0 not found in the cart.");
+                        printDocument.Print(); // Trigger printing
+                        UpdateProductQuantities();
+                        ClearDataGridViewRows(dataGridViewCart);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred while trying to print: " + ex.Message);
                     }
                 }
-                else
+            }
+        }
+        private void printCart_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            // Define basic settings for printing
+            float yPos = e.MarginBounds.Top; // Start printing from the top margin
+            int rowHeight = 30; // Height of each row
+            int columnWidth = 100; // Width of each column
+            float totalPrice = 0; // Variable to accumulate total price
+
+            Font headerFont = new Font("Arial", 12, FontStyle.Bold);
+            Font contentFont = new Font("Arial", 10);
+            Font titleFont = new Font("Arial", 16, FontStyle.Bold);
+            Brush brush = Brushes.Black;
+
+            // Print store title
+            e.Graphics.DrawString("Welcome to THE4 SMART", titleFont, brush, e.MarginBounds.Left, yPos);
+            yPos += rowHeight + 10; // Move down for the next row
+
+            // Print date and time
+            string currentDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
+            e.Graphics.DrawString("Date: " + currentDate, headerFont, brush, e.MarginBounds.Left, yPos);
+            yPos += rowHeight; // Move down for the next row
+
+            // Print header row for the table
+            e.Graphics.DrawString("N0", headerFont, brush, e.MarginBounds.Left, yPos);
+            e.Graphics.DrawString("Name", headerFont, brush, e.MarginBounds.Left + columnWidth, yPos);
+            e.Graphics.DrawString("Price", headerFont, brush, e.MarginBounds.Left + 2 * columnWidth, yPos);
+            e.Graphics.DrawString("Quantity", headerFont, brush, e.MarginBounds.Left + 3 * columnWidth, yPos);
+            e.Graphics.DrawString("Discount", headerFont, brush, e.MarginBounds.Left + 4 * columnWidth, yPos);
+            e.Graphics.DrawString("Amount", headerFont, brush, e.MarginBounds.Left + 5 * columnWidth, yPos);
+
+            yPos += rowHeight; // Move down for the next row
+
+            // Loop through each row in the DataGridView and print the values
+            foreach (DataGridViewRow row in dataGridViewCart.Rows)
+            {
+                if (row.IsNewRow) continue; // Skip the new row placeholder
+
+                // Retrieve and print each cell in the row
+                string no = row.Cells["N0"].Value?.ToString();
+                string name = row.Cells["Name"].Value?.ToString();
+                string price = row.Cells["Price"].Value?.ToString();
+                string quantity = row.Cells["Quantity"].Value?.ToString();
+                string discount = row.Cells["Discount"].Value?.ToString();
+                string amount = row.Cells["Amount"].Value?.ToString();
+
+                e.Graphics.DrawString(no, contentFont, brush, e.MarginBounds.Left, yPos);
+                e.Graphics.DrawString(name, contentFont, brush, e.MarginBounds.Left + columnWidth, yPos);
+                e.Graphics.DrawString(price, contentFont, brush, e.MarginBounds.Left + 2 * columnWidth, yPos);
+                e.Graphics.DrawString(quantity, contentFont, brush, e.MarginBounds.Left + 3 * columnWidth, yPos);
+                e.Graphics.DrawString(discount, contentFont, brush, e.MarginBounds.Left + 4 * columnWidth, yPos);
+                e.Graphics.DrawString(amount, contentFont, brush, e.MarginBounds.Left + 5 * columnWidth, yPos);
+
+                // Update the total price
+                if (float.TryParse(amount, out float parsedAmount))
                 {
-                    MessageBox.Show("Please enter a valid N0 number.");
+                    totalPrice += parsedAmount;
                 }
+
+                yPos += rowHeight; // Move down for the next row
+            }
+
+            // Print total price at the bottom
+            yPos += rowHeight; // Space before total
+            e.Graphics.DrawString("Total Price: " + totalPrice.ToString("C"), headerFont, brush, e.MarginBounds.Left, yPos);
+        }
+        private void UpdateProductQuantities()
+        {
+            try
+            {
+                // Load the product list from the JSON file
+                string filePath = "productList.json";
+                string jsonData = File.ReadAllText(filePath);
+                var productsWrapper = JsonConvert.DeserializeObject<ProductWrapper>(jsonData);
+
+                // Loop through each item in the cart and update the original product quantities
+                foreach (DataGridViewRow row in dataGridViewCart.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    string productId = row.Cells["Id"].Value.ToString();
+                    int quantityPurchased = Convert.ToInt32(row.Cells["Quantity"].Value);
+
+                    // Find the matching product in the original product list
+                    var product = productsWrapper.Products.FirstOrDefault(p => p.ProductId == productId);
+                    if (product != null)
+                    {
+                        // Update the quantity by subtracting the quantity purchased
+                        product.ProductQuantity -= quantityPurchased;
+                    }
+                }
+
+                // Save the updated product list back to the JSON file
+                string updatedJsonData = JsonConvert.SerializeObject(productsWrapper, Formatting.Indented);
+                File.WriteAllText(filePath, updatedJsonData);
+
+                MessageBox.Show("Product quantities updated successfully in the file.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while updating quantities: " + ex.Message);
+            }
+            
+            RefreshDataGridView();
+            
+        }
+
+        private void ClearDataGridViewRows(DataGridView dataGridView)
+        {
+            // Commit dòng mới nếu có (để tránh lỗi)
+            dataGridView.EndEdit();
+
+            // Kiểm tra xem DataGridView có hàng nào không
+            if (dataGridView.Rows.Count > 1) // Chỉ chạy khi có hơn 1 dòng (để giữ lại dòng mới trống)
+            {
+                // Xóa từ dưới lên để tránh lỗi
+                for (int i = dataGridView.Rows.Count - 2; i >= 0; i--)
+                {
+                    dataGridView.Rows.RemoveAt(i);
+                }
+
+                // Hiển thị thông báo thành công (nếu cần)
+                MessageBox.Show("All rows have been cleared from the cart.");
             }
             else
             {
-                MessageBox.Show("Please enter an N0 number.");
+                MessageBox.Show("No rows to clear.");
             }
-        }
-
-        private void txt_TotalPrice_TextChanged(object sender, EventArgs e)
-        {
-
+            txt_TotalPrice.Text = string.Empty;
         }
     }
 }

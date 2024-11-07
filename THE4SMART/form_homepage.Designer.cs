@@ -93,12 +93,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.Cart = new System.Windows.Forms.TabPage();
+            this.btn_CartPayment = new System.Windows.Forms.Button();
             this.txt_TotalPrice = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.txt_CartRemove = new System.Windows.Forms.TextBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
             this.Quantity = new System.Windows.Forms.Label();
             this.txt_CartQuantity = new System.Windows.Forms.TextBox();
             this.cbb_CartName = new System.Windows.Forms.ComboBox();
@@ -120,6 +119,7 @@
             this.txt_CartID = new System.Windows.Forms.TextBox();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.bunifuElipse2 = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.printCart = new System.Drawing.Printing.PrintDocument();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_1.SuspendLayout();
@@ -143,7 +143,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.Cart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -649,7 +648,7 @@
             // tabPage4
             // 
             this.tabPage4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage4.BackgroundImage")));
-            this.tabPage4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tabPage4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tabPage4.Controls.Add(this.panel5);
             this.tabPage4.Controls.Add(this.panel3);
             this.tabPage4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -672,12 +671,14 @@
             // 
             // dataGridViewStorage
             // 
+            this.dataGridViewStorage.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewStorage.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridViewStorage.ColumnHeadersHeight = 29;
             this.dataGridViewStorage.Location = new System.Drawing.Point(21, 18);
             this.dataGridViewStorage.Name = "dataGridViewStorage";
             this.dataGridViewStorage.RowHeadersWidth = 51;
             this.dataGridViewStorage.RowTemplate.Height = 24;
-            this.dataGridViewStorage.Size = new System.Drawing.Size(1035, 150);
+            this.dataGridViewStorage.Size = new System.Drawing.Size(1047, 447);
             this.dataGridViewStorage.TabIndex = 0;
             // 
             // panel3
@@ -802,11 +803,11 @@
             // 
             this.Cart.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Cart.BackgroundImage")));
             this.Cart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Cart.Controls.Add(this.btn_CartPayment);
             this.Cart.Controls.Add(this.txt_TotalPrice);
             this.Cart.Controls.Add(this.label24);
             this.Cart.Controls.Add(this.txt_CartRemove);
             this.Cart.Controls.Add(this.pictureBox5);
-            this.Cart.Controls.Add(this.panel8);
             this.Cart.Controls.Add(this.Quantity);
             this.Cart.Controls.Add(this.txt_CartQuantity);
             this.Cart.Controls.Add(this.cbb_CartName);
@@ -835,26 +836,40 @@
             this.Cart.Text = "Cart";
             this.Cart.UseVisualStyleBackColor = true;
             // 
+            // btn_CartPayment
+            // 
+            this.btn_CartPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CartPayment.Location = new System.Drawing.Point(831, 706);
+            this.btn_CartPayment.Name = "btn_CartPayment";
+            this.btn_CartPayment.Size = new System.Drawing.Size(267, 49);
+            this.btn_CartPayment.TabIndex = 35;
+            this.btn_CartPayment.Text = "Payment && Print Cart";
+            this.btn_CartPayment.UseVisualStyleBackColor = true;
+            this.btn_CartPayment.Click += new System.EventHandler(this.btn_CartPayment_Click);
+            // 
             // txt_TotalPrice
             // 
-            this.txt_TotalPrice.Location = new System.Drawing.Point(819, 731);
+            this.txt_TotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_TotalPrice.Location = new System.Drawing.Point(831, 633);
             this.txt_TotalPrice.Name = "txt_TotalPrice";
-            this.txt_TotalPrice.Size = new System.Drawing.Size(264, 30);
+            this.txt_TotalPrice.ReadOnly = true;
+            this.txt_TotalPrice.Size = new System.Drawing.Size(264, 34);
             this.txt_TotalPrice.TabIndex = 34;
-            this.txt_TotalPrice.TextChanged += new System.EventHandler(this.txt_TotalPrice_TextChanged);
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(105, 731);
+            this.label24.BackColor = System.Drawing.Color.White;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(59, 633);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(56, 25);
+            this.label24.Size = new System.Drawing.Size(73, 29);
             this.label24.TabIndex = 33;
             this.label24.Text = "Total";
             // 
             // txt_CartRemove
             // 
-            this.txt_CartRemove.Location = new System.Drawing.Point(670, 248);
+            this.txt_CartRemove.Location = new System.Drawing.Point(832, 248);
             this.txt_CartRemove.Name = "txt_CartRemove";
             this.txt_CartRemove.Size = new System.Drawing.Size(100, 30);
             this.txt_CartRemove.TabIndex = 32;
@@ -863,36 +878,16 @@
             // 
             this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
             this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(50, 721);
+            this.pictureBox5.Location = new System.Drawing.Point(28, 623);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(1058, 47);
+            this.pictureBox5.Size = new System.Drawing.Size(1100, 47);
             this.pictureBox5.TabIndex = 31;
             this.pictureBox5.TabStop = false;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.label13);
-            this.panel8.Location = new System.Drawing.Point(851, 43);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(272, 205);
-            this.panel8.TabIndex = 30;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.label13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(0, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(68, 29);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Total";
             // 
             // Quantity
             // 
             this.Quantity.AutoSize = true;
-            this.Quantity.Location = new System.Drawing.Point(240, 112);
+            this.Quantity.Location = new System.Drawing.Point(312, 111);
             this.Quantity.Name = "Quantity";
             this.Quantity.Size = new System.Drawing.Size(92, 25);
             this.Quantity.TabIndex = 29;
@@ -900,7 +895,7 @@
             // 
             // txt_CartQuantity
             // 
-            this.txt_CartQuantity.Location = new System.Drawing.Point(245, 139);
+            this.txt_CartQuantity.Location = new System.Drawing.Point(317, 138);
             this.txt_CartQuantity.Name = "txt_CartQuantity";
             this.txt_CartQuantity.ReadOnly = true;
             this.txt_CartQuantity.Size = new System.Drawing.Size(121, 30);
@@ -943,7 +938,7 @@
             this.btn_CartAdd.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btn_CartAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_CartAdd.ForeColor = System.Drawing.Color.White;
-            this.btn_CartAdd.Location = new System.Drawing.Point(669, 134);
+            this.btn_CartAdd.Location = new System.Drawing.Point(829, 130);
             this.btn_CartAdd.Name = "btn_CartAdd";
             this.btn_CartAdd.Size = new System.Drawing.Size(103, 40);
             this.btn_CartAdd.TabIndex = 23;
@@ -956,7 +951,7 @@
             this.btn_CartRemove.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btn_CartRemove.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_CartRemove.ForeColor = System.Drawing.Color.White;
-            this.btn_CartRemove.Location = new System.Drawing.Point(669, 208);
+            this.btn_CartRemove.Location = new System.Drawing.Point(831, 208);
             this.btn_CartRemove.Name = "btn_CartRemove";
             this.btn_CartRemove.Size = new System.Drawing.Size(103, 40);
             this.btn_CartRemove.TabIndex = 22;
@@ -967,7 +962,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(453, 190);
+            this.label22.Location = new System.Drawing.Point(567, 189);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(88, 25);
             this.label22.TabIndex = 21;
@@ -981,7 +976,7 @@
             "20",
             "30",
             "50"});
-            this.cbb_Discount.Location = new System.Drawing.Point(458, 215);
+            this.cbb_Discount.Location = new System.Drawing.Point(572, 214);
             this.cbb_Discount.Name = "cbb_Discount";
             this.cbb_Discount.Size = new System.Drawing.Size(121, 33);
             this.cbb_Discount.TabIndex = 20;
@@ -1029,7 +1024,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(453, 112);
+            this.label19.Location = new System.Drawing.Point(567, 111);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(56, 25);
             this.label19.TabIndex = 5;
@@ -1037,7 +1032,7 @@
             // 
             // txt_CartPrice
             // 
-            this.txt_CartPrice.Location = new System.Drawing.Point(458, 139);
+            this.txt_CartPrice.Location = new System.Drawing.Point(572, 138);
             this.txt_CartPrice.Name = "txt_CartPrice";
             this.txt_CartPrice.ReadOnly = true;
             this.txt_CartPrice.Size = new System.Drawing.Size(121, 30);
@@ -1046,7 +1041,7 @@
             // Amount
             // 
             this.Amount.AutoSize = true;
-            this.Amount.Location = new System.Drawing.Point(240, 190);
+            this.Amount.Location = new System.Drawing.Point(312, 189);
             this.Amount.Name = "Amount";
             this.Amount.Size = new System.Drawing.Size(85, 25);
             this.Amount.TabIndex = 3;
@@ -1054,10 +1049,11 @@
             // 
             // txt_CartAmount
             // 
-            this.txt_CartAmount.Location = new System.Drawing.Point(245, 218);
+            this.txt_CartAmount.Location = new System.Drawing.Point(317, 217);
             this.txt_CartAmount.Name = "txt_CartAmount";
             this.txt_CartAmount.Size = new System.Drawing.Size(121, 30);
             this.txt_CartAmount.TabIndex = 2;
+            this.txt_CartAmount.TextChanged += new System.EventHandler(this.txt_CartAmount_TextChanged);
             // 
             // label10
             // 
@@ -1085,6 +1081,10 @@
             // 
             this.bunifuElipse2.ElipseRadius = 30;
             this.bunifuElipse2.TargetControl = this.panel_ProductOutput;
+            // 
+            // printCart
+            // 
+            this.printCart.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printCart_PrintPage);
             // 
             // form_homepage
             // 
@@ -1129,8 +1129,6 @@
             this.Cart.ResumeLayout(false);
             this.Cart.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCart)).EndInit();
             this.ResumeLayout(false);
 
@@ -1221,11 +1219,11 @@
         private System.Windows.Forms.ComboBox cbb_CartName;
         private System.Windows.Forms.Label Quantity;
         private System.Windows.Forms.TextBox txt_CartQuantity;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.TextBox txt_CartRemove;
         private System.Windows.Forms.TextBox txt_TotalPrice;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button btn_CartPayment;
+        private System.Drawing.Printing.PrintDocument printCart;
     }
 }
