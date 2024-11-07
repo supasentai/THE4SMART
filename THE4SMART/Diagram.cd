@@ -18,7 +18,7 @@
   <Class Name="list_Manager" BaseTypeListCollapsed="true">
     <Position X="3.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAAAAAAAgAAAgAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>list_Manager.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.826" Collapsed="true" />
@@ -26,7 +26,7 @@
   <Class Name="list_product" BaseTypeListCollapsed="true">
     <Position X="9.25" Y="2.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAgEAAAgAAAAAAAAgAABAQ=</HashCode>
+      <HashCode>AAIAAAACAAAAAAAAAAAAAAAgEAAAgAAAAAAAAgAABAQ=</HashCode>
       <FileName>list_product.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -41,7 +41,7 @@
   <Class Name="list_Staff" BaseTypeListCollapsed="true">
     <Position X="11.75" Y="2.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAIgAAAAAAAAAAgAAAAAQAAgACAAAAAIAAAAAAAAAAI=</HashCode>
+      <HashCode>AAIgAAgAAAAAAAgAAAAAQAAgACAAAAAIAAAAAAAAAAI=</HashCode>
       <FileName>list_Staff.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.695" Collapsed="true" />
@@ -78,14 +78,14 @@
   <Class Name="THE4SMART.form_Home" Collapsed="true">
     <Position X="9.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAKgJAgACAAgBMIAAiAAIgGEgEiCOgUAEAAAABAAAA=</HashCode>
+      <HashCode>AAAaABEgACAAAREAAAiAAIACAEECCI4AAMEACgBAEAA=</HashCode>
       <FileName>form_Home.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="THE4SMART.form_homepage" Collapsed="true">
     <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>/2AAB/g2AGIEZJCUYYSAcCTiAHt4hMSOUBAAy8BDJvA=</HashCode>
+      <HashCode>/2AAB/A0AGIEZJCUYYSAcCTiAHt4hMSOUBAAycBDJvA=</HashCode>
       <FileName>form_homepage.cs</FileName>
     </TypeIdentifier>
   </Class>

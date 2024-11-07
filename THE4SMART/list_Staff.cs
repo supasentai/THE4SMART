@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Windows.Forms;
 using System.IO;
 using THE4SMART;
+using System.Data;
 
 [Serializable]
 public class list_Staff : ISerializable
@@ -136,10 +137,28 @@ public class list_Staff : ISerializable
         string updatedJsonData = JsonConvert.SerializeObject(staffList, Formatting.Indented);
         File.WriteAllText(filePath, updatedJsonData);
     }
-    
+    public DataTable dataTableStaff(List<Staff> staffs)
+    {
+        DataTable dataTable = new DataTable();
+        dataTable.Columns.Add("Id");
+        dataTable.Columns.Add("Name");
+        dataTable.Columns.Add("Shift");
+        dataTable.Columns.Add("Address");
+        dataTable.Columns.Add("Phone");
+        // Add rows
+        foreach (Staff staff in staffs)
+        {
+            dataTable.Rows.Add(staff.User_id, staff.User_name, staff.StaffShift, staff.User_Address, staff.User_Phone); // Adjust properties accordingly
+        }
+        return dataTable;
+    }
 }
 public class StaffList
 {
     public List<Staff> Staffs { get; set; }
 
+}
+public class StaffWrapper
+{
+    public List<Staff> Staffs { get; set; }
 }

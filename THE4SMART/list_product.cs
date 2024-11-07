@@ -7,6 +7,7 @@ using System.IO;
 using THE4SMART;
 using System.Linq;
 using System.Xml.Linq;
+using System.Data;
 
 [Serializable]
 public class list_product: ISerializable
@@ -140,10 +141,30 @@ public class list_product: ISerializable
         string updatedJsonData = JsonConvert.SerializeObject(productList, Formatting.Indented);
         File.WriteAllText(filePath, updatedJsonData);
     }
+    public DataTable dataTableProduct(List<Product> products)
+    {
+        DataTable dataTable = new DataTable();
+        dataTable.Columns.Add("Id"); // Adjust column names accordingly
+        dataTable.Columns.Add("Name");
+        dataTable.Columns.Add("Price");
+        dataTable.Columns.Add("Quatity");
+        dataTable.Columns.Add("Category");
+        dataTable.Columns.Add("Manufacturer");
 
+        foreach (Product product in products)
+        {
+            dataTable.Rows.Add(product.ProductId, product.ProductName, product.ProductPrice, product.ProductQuantity, product.ProductCategory, product.ProductManufacturer); // Adjust properties accordingly
+        }
+        return dataTable;
+    }
+    
 }
 public class ProductList
 {
     public List<Product> Products { get; set; }
 
+}
+public class ProductWrapper
+{
+    public List<Product> Products { get; set; }
 }

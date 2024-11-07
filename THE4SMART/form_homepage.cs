@@ -28,77 +28,32 @@ namespace THE4SMART
         {
             string json_product = File.ReadAllText(@"productList.json");
             ProductWrapper productWrapper = JsonConvert.DeserializeObject<ProductWrapper>(json_product);
-            dataGridView1.DataSource = dataTableProduct(productWrapper.Products);
-            dataGridViewStorage.DataSource = dataTableProduct(productWrapper.Products);
+            dataGridView1.DataSource = ProductList.dataTableProduct(productWrapper.Products);
+            dataGridViewStorage.DataSource = ProductList.dataTableProduct(productWrapper.Products);
 
             string json_staff = File.ReadAllText(@"staffList.json");
             StaffWrapper staffWrapper = JsonConvert.DeserializeObject<StaffWrapper>(json_staff);
-            dataGridViewStaff.DataSource = dataTableStaff(staffWrapper.Staffs);
+            dataGridViewStaff.DataSource = StaffList.dataTableStaff(staffWrapper.Staffs);
 
-            // Nạp dữ liệu sản phẩm từ file JSON và gán vào ProductList
             ProductList = LoadProductsFromJson(@"productList.json");
 
-            // Đảm bảo ProductList đã chứa sản phẩm
             if (ProductList.Products == null || ProductList.Products.Count == 0)
             {
                 MessageBox.Show("Danh sách sản phẩm trống hoặc không thể đọc dữ liệu từ file JSON.");
                 return;
             }
 
-            // Cập nhật DataGridView với dữ liệu sản phẩm
-            dataGridView1.DataSource = dataTableProduct(ProductList.Products);
-            dataGridViewStorage.DataSource = dataTableProduct(ProductList.Products);
+            dataGridView1.DataSource = ProductList.dataTableProduct(ProductList.Products);
+            dataGridViewStorage.DataSource = ProductList.dataTableProduct(ProductList.Products);
 
-            // Nạp dữ liệu staff từ file JSON và hiển thị trong DataGridView
             StaffList = LoadStaffsFromJson(@"staffList.json");
             if (StaffList.Staffs != null)
             {
-                dataGridViewStaff.DataSource = dataTableStaff(StaffList.Staffs);
+                dataGridViewStaff.DataSource = StaffList.dataTableStaff(StaffList.Staffs);
             }
-
-            // Cập nhật danh sách danh mục sản phẩm
             updateCategory(@"productList.json");
 
             if(list_Manager.permission) panel_Permision.Visible = false;
-        }
-        public class ProductWrapper
-        {
-            public List<Product> Products { get; set; }
-        }
-        public class StaffWrapper
-        {
-            public List<Staff> Staffs { get; set; }
-        }
-        private DataTable dataTableProduct(List<Product> products)
-        {
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("Id"); // Adjust column names accordingly
-            dataTable.Columns.Add("Name");
-            dataTable.Columns.Add("Price");
-            dataTable.Columns.Add("Quatity");
-            dataTable.Columns.Add("Category");
-            dataTable.Columns.Add("Manufacturer");
-
-            foreach (Product product in products)
-            {
-                dataTable.Rows.Add(product.ProductId, product.ProductName, product.ProductPrice, product.ProductQuantity, product.ProductCategory, product.ProductManufacturer); // Adjust properties accordingly
-            }
-            return dataTable;
-        }
-        private DataTable dataTableStaff(List<Staff> staffs)
-        {
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("Id");
-            dataTable.Columns.Add("Name");
-            dataTable.Columns.Add("Shift");
-            dataTable.Columns.Add("Address");
-            dataTable.Columns.Add("Phone");
-            // Add rows
-            foreach (Staff staff in staffs)
-            {
-                dataTable.Rows.Add(staff.User_id, staff.User_name, staff.StaffShift, staff.User_Address, staff.User_Phone); // Adjust properties accordingly
-            }
-            return dataTable;
         }
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -108,7 +63,6 @@ namespace THE4SMART
         {//string productId,string productName, int productQuantity, int productPrice, string productCategory, string productManufacturer
             try
             {
-
                 if (ProductList.CheckProductNotExist(txt_ProductID.Text))
                 {
                     Product newProduct = new Product(
@@ -160,7 +114,6 @@ namespace THE4SMART
                 txt_ProductCategory.Text = foundProduct.ProductCategory;
                 txt_ProductQuantity.Text = "0";
                 txt_ProductPrice.Text = foundProduct.ProductPrice.ToString();
-
             }
             else
             {
@@ -200,7 +153,6 @@ namespace THE4SMART
                     dataGridViewStaff.DataSource = null;
                     dataGridViewStaff.DataSource = StaffList.Staffs.ToList();
                     MessageBox.Show("Successfully Added!");
-
                 }
             }
             catch (FormatException)
@@ -226,7 +178,6 @@ namespace THE4SMART
         {
             new form_aboutus().Show();
         }
-
         private void updateCategory(string filePath)
         {
             cbb_CartCategory.Items.Clear();
@@ -236,7 +187,6 @@ namespace THE4SMART
                 MessageBox.Show("File productList.json không tồn tại.");
                 return;
             }
-
             // Đọc dữ liệu từ file JSON
             string jsonData = File.ReadAllText(filePath);
             ProductWrapper productsWrapper = JsonConvert.DeserializeObject<ProductWrapper>(jsonData);
@@ -256,7 +206,6 @@ namespace THE4SMART
                 }
             }
         }
-
         private void cbb_CartCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbb_CartName.Items.Clear();
@@ -280,7 +229,6 @@ namespace THE4SMART
                 MessageBox.Show("Không có sản phẩm nào trong danh mục đã chọn.");
             }
         }
-
         private void cbb_CartName_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(cbb_CartName.Text))
@@ -303,33 +251,18 @@ namespace THE4SMART
                 MessageBox.Show("Không tìm thấy sản phẩm với tên đã chọn.");
             }
         }
-        public bool CheckProductNotExist(string id)
-        {
-            // Đọc file JSON
-            string filePath = @"productList.json";
-            string jsonData = File.ReadAllText(filePath);
-
-            // Chuyển đổi JSON thành đối tượng ProductList
-            ProductList productList = JsonConvert.DeserializeObject<ProductList>(jsonData);
-
-            // Kiểm tra xem ProductId có tồn tại không
-            bool productNotFound = !productList.Products.Any(product => product.ProductId == id);
-
-            return productNotFound;
-        }
         private void RefreshDataGridView()
         {
             string filePath = @"productList.json";
             ProductList = LoadProductsFromJson(filePath);
 
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = dataTableProduct(ProductList.Products);
+            dataGridView1.DataSource = ProductList.dataTableProduct(ProductList.Products);
 
             dataGridViewStorage.DataSource = null;
-            dataGridViewStorage.DataSource = dataTableProduct(ProductList.Products);
+            dataGridViewStorage.DataSource = ProductList.dataTableProduct(ProductList.Products);
 
         }
-
         private DataTable dataTableCart(List<Product> products)
         {
             DataTable dataTable = new DataTable();
@@ -349,7 +282,6 @@ namespace THE4SMART
             }
             return dataTable;
         }
-
         private void btn_CartAdd_Click(object sender, EventArgs e)
         {
             // Retrieve product by ID from the list
@@ -357,7 +289,6 @@ namespace THE4SMART
             int temporary;
             if (int.Parse(txt_CartQuantity.Text) > 0 && int.Parse(txt_CartQuantity.Text) >= int.Parse(txt_CartAmount.Text))
             {
-
                 if (selectedProduct != null)
                 {
                     // Parse quantity and discount inputs
@@ -374,7 +305,6 @@ namespace THE4SMART
                         MessageBox.Show("Please enter a valid discount.");
                         return;
                     }
-
                     // Calculate amount
                     float amount = selectedProduct.amountCal(selectedProduct.ProductPrice, quantity, discount);
 
@@ -401,8 +331,6 @@ namespace THE4SMART
                     totalPrice += selectedProduct.amountCal(selectedProduct.ProductPrice, quantity, discount);
                     txt_TotalPrice.Text = totalPrice.ToString();
 
-
-
                     selectedProduct.ReduceStock(temporary);
                     txt_CartQuantity.Text = selectedProduct.ProductQuantity.ToString();
                     // Re-bind updated DataTable to DataGridView
@@ -412,12 +340,8 @@ namespace THE4SMART
                 {
                     MessageBox.Show("Selected product not found.");
                 }
-
-                
             }
-            
         }
-
         private void btn_CartRemove_Click(object sender, EventArgs e)
         {
             // Check if the "N0" text box has a value
@@ -446,10 +370,8 @@ namespace THE4SMART
 
                     // Calculate the amount with the discount applied
                     float amount = price * quantity * (1 - discount / 100);
-
                     // Subtract the amount from totalPrice
                     totalPrice -= amount;
-
                     txt_TotalPrice.Text = totalPrice.ToString();
 
                     int temporary = int.Parse(txt_CartQuantity.Text);
@@ -464,8 +386,6 @@ namespace THE4SMART
                         {
                             dataTable.Rows[i]["N0"] = i + 1;
                         }
-
-                        
                         MessageBox.Show("Product removed successfully.");
                     }
                     else MessageBox.Show("Product with the specified N0 not found in the cart.");
@@ -614,11 +534,8 @@ namespace THE4SMART
             {
                 MessageBox.Show("An error occurred while updating quantities: " + ex.Message);
             }
-            
             RefreshDataGridView();
-            
         }
-
         private void ClearDataGridViewRows(DataGridView dataGridView)
         {
             // Commit dòng mới nếu có (để tránh lỗi)
@@ -642,6 +559,5 @@ namespace THE4SMART
             }
             txt_TotalPrice.Text = string.Empty;
         }
-
     }
 }
