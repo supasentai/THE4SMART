@@ -120,6 +120,8 @@
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.bunifuElipse2 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.printCart = new System.Drawing.Printing.PrintDocument();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel_Permision = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_1.SuspendLayout();
@@ -144,6 +146,7 @@
             this.Cart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCart)).BeginInit();
+            this.panel_Permision.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -448,6 +451,7 @@
             // 
             this.Staffs.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Staffs.BackgroundImage")));
             this.Staffs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Staffs.Controls.Add(this.panel_Permision);
             this.Staffs.Controls.Add(this.panel7);
             this.Staffs.Controls.Add(this.panel6);
             this.Staffs.Location = new System.Drawing.Point(4, 25);
@@ -1086,6 +1090,25 @@
             // 
             this.printCart.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printCart_PrintPage);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Red;
+            this.label13.Location = new System.Drawing.Point(299, 325);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(424, 39);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "PERMISSION REQUIRED";
+            // 
+            // panel_Permision
+            // 
+            this.panel_Permision.Controls.Add(this.label13);
+            this.panel_Permision.Location = new System.Drawing.Point(21, 17);
+            this.panel_Permision.Name = "panel_Permision";
+            this.panel_Permision.Size = new System.Drawing.Size(1124, 819);
+            this.panel_Permision.TabIndex = 3;
+            // 
             // form_homepage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1130,6 +1153,8 @@
             this.Cart.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCart)).EndInit();
+            this.panel_Permision.ResumeLayout(false);
+            this.panel_Permision.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1225,5 +1250,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btn_CartPayment;
         private System.Drawing.Printing.PrintDocument printCart;
+        private System.Windows.Forms.Panel panel_Permision;
+        private System.Windows.Forms.Label label13;
     }
 }

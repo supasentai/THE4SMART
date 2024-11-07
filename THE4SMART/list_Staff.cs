@@ -45,7 +45,7 @@ public class list_Staff : ISerializable
 
     public void check_user(string username, string password)
     {
-        string fileStaffs = @"D:\C#\THE4SMART\THE4SMART\bin\Debug\staffList.json"; // Ensure this path is correct
+        string fileStaffs = @"staffList.json"; // Ensure this path is correct
 
         try
         {
@@ -98,7 +98,7 @@ public class list_Staff : ISerializable
     public bool CheckStaffNotExist(string id)
     {
         // Đọc file JSON
-        string filePath = @"D:\C#\THE4SMART\THE4SMART\bin\Debug\staffList.json";
+        string filePath = @"staffList.json";
         string jsonData = File.ReadAllText(filePath);
 
         // Chuyển đổi JSON thành đối tượng StaffList
@@ -112,7 +112,7 @@ public class list_Staff : ISerializable
     public void AddStaffToFile(Staff newStaff)
     {
         // Đường dẫn đến file JSON
-        string filePath = @"D:\C#\THE4SMART\THE4SMART\bin\Debug\staffList.json";
+        string filePath = @"staffList.json";
 
         // Đọc dữ liệu hiện tại từ file JSON
         StaffList staffList;
@@ -136,7 +136,7 @@ public class list_Staff : ISerializable
         string updatedJsonData = JsonConvert.SerializeObject(staffList, Formatting.Indented);
         File.WriteAllText(filePath, updatedJsonData);
     }
-
+    
 }
 public class StaffList
 {

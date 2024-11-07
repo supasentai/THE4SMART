@@ -1,14 +1,6 @@
 {
   "Staffs": [
     {
-      "StaffShift": "123",
-      "User_id": "123",
-      "User_Password": "123",
-      "User_name": "123",
-      "User_Phone": "123",
-      "User_Address": "123"
-    },
-    {
       "StaffShift": "0-4h",
       "User_id": "111",
       "User_Password": "111",

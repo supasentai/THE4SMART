@@ -9,7 +9,6 @@ using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.Drawing.Printing;
-using static THE4SMART.form_homepage;
 
 namespace THE4SMART
 {
@@ -27,17 +26,17 @@ namespace THE4SMART
         }
         private void form_homepage_Load(object sender, EventArgs e)
         {
-            string json_product = File.ReadAllText(@"D:\C#\THE4SMART\THE4SMART\bin\Debug\productList.json");
+            string json_product = File.ReadAllText(@"productList.json");
             ProductWrapper productWrapper = JsonConvert.DeserializeObject<ProductWrapper>(json_product);
             dataGridView1.DataSource = dataTableProduct(productWrapper.Products);
             dataGridViewStorage.DataSource = dataTableProduct(productWrapper.Products);
 
-            string json_staff = File.ReadAllText(@"D:\C#\THE4SMART\THE4SMART\bin\Debug\staffList.json");
+            string json_staff = File.ReadAllText(@"staffList.json");
             StaffWrapper staffWrapper = JsonConvert.DeserializeObject<StaffWrapper>(json_staff);
             dataGridViewStaff.DataSource = dataTableStaff(staffWrapper.Staffs);
 
             // Nạp dữ liệu sản phẩm từ file JSON và gán vào ProductList
-            ProductList = LoadProductsFromJson(@"D:\C#\THE4SMART\THE4SMART\bin\Debug\productList.json");
+            ProductList = LoadProductsFromJson(@"productList.json");
 
             // Đảm bảo ProductList đã chứa sản phẩm
             if (ProductList.Products == null || ProductList.Products.Count == 0)
@@ -51,14 +50,16 @@ namespace THE4SMART
             dataGridViewStorage.DataSource = dataTableProduct(ProductList.Products);
 
             // Nạp dữ liệu staff từ file JSON và hiển thị trong DataGridView
-            StaffList = LoadStaffsFromJson(@"D:\C#\THE4SMART\THE4SMART\bin\Debug\staffList.json");
+            StaffList = LoadStaffsFromJson(@"staffList.json");
             if (StaffList.Staffs != null)
             {
                 dataGridViewStaff.DataSource = dataTableStaff(StaffList.Staffs);
             }
 
             // Cập nhật danh sách danh mục sản phẩm
-            updateCategory(@"D:\C#\THE4SMART\THE4SMART\bin\Debug\productList.json");
+            updateCategory(@"productList.json");
+
+            if(list_Manager.permission) panel_Permision.Visible = false;
         }
         public class ProductWrapper
         {
@@ -131,7 +132,7 @@ namespace THE4SMART
             {
                 MessageBox.Show("Please enter valid numbers for Quantity and Price.");
             }
-            updateCategory(@"D:\C#\THE4SMART\THE4SMART\bin\Debug\productList.json");
+            updateCategory(@"productList.json");
         }
         private void btn_ProductClear_Click(object sender, EventArgs e)
         {
@@ -192,7 +193,7 @@ namespace THE4SMART
                 );
                     StaffList.AddStaffToFile(newStaff);
                     // Đọc dữ liệu từ file JSON và cập nhật lại DataGridView
-                    string filePath = @"D:\C#\THE4SMART\THE4SMART\bin\Debug\staffList.json";
+                    string filePath = @"staffList.json";
                     StaffList = LoadStaffsFromJson(filePath);
 
                     // Làm mới DataGridView với dữ liệu mới
@@ -305,7 +306,7 @@ namespace THE4SMART
         public bool CheckProductNotExist(string id)
         {
             // Đọc file JSON
-            string filePath = @"D:\C#\THE4SMART\THE4SMART\bin\Debug\productList.json";
+            string filePath = @"productList.json";
             string jsonData = File.ReadAllText(filePath);
 
             // Chuyển đổi JSON thành đối tượng ProductList
@@ -318,7 +319,7 @@ namespace THE4SMART
         }
         private void RefreshDataGridView()
         {
-            string filePath = @"D:\C#\THE4SMART\THE4SMART\bin\Debug\productList.json";
+            string filePath = @"productList.json";
             ProductList = LoadProductsFromJson(filePath);
 
             dataGridView1.DataSource = null;
@@ -641,5 +642,6 @@ namespace THE4SMART
             }
             txt_TotalPrice.Text = string.Empty;
         }
+
     }
 }

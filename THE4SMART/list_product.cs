@@ -24,7 +24,7 @@ public class list_product: ISerializable
     }
     public void Add(string id, int quantity)
     {
-        string filePath = @"D:\C#\THE4SMART\THE4SMART\bin\Debug\productList.json";
+        string filePath = @"productList.json";
 
         // Load products from the JSON file
         ProductList loadedProducts = LoadProductsFromJson(filePath);
@@ -73,7 +73,7 @@ public class list_product: ISerializable
 
     public Product CheckProduct(string id)
     {
-        string fileProducts = @"D:\C#\THE4SMART\THE4SMART\bin\Debug\productList.json";
+        string fileProducts = @"productList.json";
         try
         {
             ProductList loadedProducts = LoadProductsFromJson(fileProducts);
@@ -102,7 +102,7 @@ public class list_product: ISerializable
     public bool CheckProductNotExist(string id)
     {
         // Đọc file JSON
-        string filePath = @"D:\C#\THE4SMART\THE4SMART\bin\Debug\productList.json";
+        string filePath = @"productList.json";
         string jsonData = File.ReadAllText(filePath);
 
         // Chuyển đổi JSON thành đối tượng ProductList
@@ -116,7 +116,7 @@ public class list_product: ISerializable
     public void AddProductToFile(Product newProduct)
     {
         // Đường dẫn đến file JSON
-        string filePath = @"D:\C#\THE4SMART\THE4SMART\bin\Debug\productList.json";
+        string filePath = @"productList.json";
 
         // Đọc dữ liệu hiện tại từ file JSON
         ProductList productList;

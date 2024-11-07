@@ -31,11 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(form_Home));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btn_SignUp = new System.Windows.Forms.Button();
+            this.btn_Manager = new System.Windows.Forms.Button();
             this.btn_SignIn = new System.Windows.Forms.Button();
             this.panel_SignIn = new System.Windows.Forms.Panel();
             this.llb_ReturnFromSignIn = new System.Windows.Forms.LinkLabel();
-            this.llb_SignUp = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txt_SignInUsername = new System.Windows.Forms.TextBox();
@@ -43,23 +42,21 @@
             this.txt_SignInPassword = new System.Windows.Forms.TextBox();
             this.btn_SignIn2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel_SignUp = new System.Windows.Forms.Panel();
-            this.btn_Escape3 = new System.Windows.Forms.PictureBox();
-            this.llb_ReturnFromSignUp = new System.Windows.Forms.LinkLabel();
-            this.llbSignIn = new System.Windows.Forms.LinkLabel();
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.panel_Manager = new System.Windows.Forms.Panel();
+            this.llb_ReturnFromManager = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txt_SignUpUsername = new System.Windows.Forms.TextBox();
+            this.txt_ManagerUsername = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txt_SignUpPassword = new System.Windows.Forms.TextBox();
-            this.btn_SignUpNext = new System.Windows.Forms.Button();
+            this.txt_ManagerPassword = new System.Windows.Forms.TextBox();
+            this.btn_ManagerSignIn = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.btn_Escape = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel_SignIn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel_SignUp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_Escape3)).BeginInit();
+            this.panel_Manager.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,22 +71,22 @@
             this.pictureBox2.TabIndex = 21;
             this.pictureBox2.TabStop = false;
             // 
-            // btn_SignUp
+            // btn_Manager
             // 
-            this.btn_SignUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btn_SignUp.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(104)))), ((int)(((byte)(74)))));
-            this.btn_SignUp.FlatAppearance.BorderSize = 0;
-            this.btn_SignUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btn_SignUp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_SignUp.Font = new System.Drawing.Font("Yu Gothic UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SignUp.ForeColor = System.Drawing.Color.White;
-            this.btn_SignUp.Location = new System.Drawing.Point(285, 270);
-            this.btn_SignUp.Name = "btn_SignUp";
-            this.btn_SignUp.Size = new System.Drawing.Size(150, 50);
-            this.btn_SignUp.TabIndex = 23;
-            this.btn_SignUp.Text = "MANAGER";
-            this.btn_SignUp.UseVisualStyleBackColor = false;
-            this.btn_SignUp.Click += new System.EventHandler(this.btn_SignUp_Click);
+            this.btn_Manager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btn_Manager.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(104)))), ((int)(((byte)(74)))));
+            this.btn_Manager.FlatAppearance.BorderSize = 0;
+            this.btn_Manager.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btn_Manager.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Manager.Font = new System.Drawing.Font("Yu Gothic UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Manager.ForeColor = System.Drawing.Color.White;
+            this.btn_Manager.Location = new System.Drawing.Point(285, 270);
+            this.btn_Manager.Name = "btn_Manager";
+            this.btn_Manager.Size = new System.Drawing.Size(150, 50);
+            this.btn_Manager.TabIndex = 23;
+            this.btn_Manager.Text = "MANAGER";
+            this.btn_Manager.UseVisualStyleBackColor = false;
+            this.btn_Manager.Click += new System.EventHandler(this.btn_Manager_Click);
             // 
             // btn_SignIn
             // 
@@ -110,9 +107,7 @@
             // 
             this.panel_SignIn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel_SignIn.BackgroundImage")));
             this.panel_SignIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel_SignIn.Controls.Add(this.panel_SignUp);
             this.panel_SignIn.Controls.Add(this.llb_ReturnFromSignIn);
-            this.panel_SignIn.Controls.Add(this.llb_SignUp);
             this.panel_SignIn.Controls.Add(this.label2);
             this.panel_SignIn.Controls.Add(this.label4);
             this.panel_SignIn.Controls.Add(this.txt_SignInUsername);
@@ -120,7 +115,7 @@
             this.panel_SignIn.Controls.Add(this.txt_SignInPassword);
             this.panel_SignIn.Controls.Add(this.btn_SignIn2);
             this.panel_SignIn.Controls.Add(this.pictureBox1);
-            this.panel_SignIn.Location = new System.Drawing.Point(12, 12);
+            this.panel_SignIn.Location = new System.Drawing.Point(0, 0);
             this.panel_SignIn.Name = "panel_SignIn";
             this.panel_SignIn.Size = new System.Drawing.Size(720, 480);
             this.panel_SignIn.TabIndex = 24;
@@ -140,31 +135,16 @@
             this.llb_ReturnFromSignIn.VisitedLinkColor = System.Drawing.Color.Red;
             this.llb_ReturnFromSignIn.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_ReturnFromSignIn_LinkClicked);
             // 
-            // llb_SignUp
-            // 
-            this.llb_SignUp.ActiveLinkColor = System.Drawing.Color.White;
-            this.llb_SignUp.AutoSize = true;
-            this.llb_SignUp.BackColor = System.Drawing.Color.Transparent;
-            this.llb_SignUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llb_SignUp.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(104)))), ((int)(((byte)(74)))));
-            this.llb_SignUp.Location = new System.Drawing.Point(327, 386);
-            this.llb_SignUp.Name = "llb_SignUp";
-            this.llb_SignUp.Size = new System.Drawing.Size(75, 20);
-            this.llb_SignUp.TabIndex = 32;
-            this.llb_SignUp.TabStop = true;
-            this.llb_SignUp.Text = "Sign Up";
-            this.llb_SignUp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_SignUp_LinkClicked);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(283, 358);
+            this.label2.Location = new System.Drawing.Point(303, 353);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(155, 20);
+            this.label2.Size = new System.Drawing.Size(111, 20);
             this.label2.TabIndex = 31;
-            this.label2.Text = "Create an account?";
+            this.label2.Text = "Staff - Sign In";
             // 
             // label4
             // 
@@ -233,77 +213,53 @@
             this.pictureBox1.TabIndex = 22;
             this.pictureBox1.TabStop = false;
             // 
-            // panel_SignUp
+            // bunifuElipse1
             // 
-            this.panel_SignUp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel_SignUp.BackgroundImage")));
-            this.panel_SignUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel_SignUp.Controls.Add(this.btn_Escape3);
-            this.panel_SignUp.Controls.Add(this.llb_ReturnFromSignUp);
-            this.panel_SignUp.Controls.Add(this.llbSignIn);
-            this.panel_SignUp.Controls.Add(this.label1);
-            this.panel_SignUp.Controls.Add(this.label3);
-            this.panel_SignUp.Controls.Add(this.txt_SignUpUsername);
-            this.panel_SignUp.Controls.Add(this.label6);
-            this.panel_SignUp.Controls.Add(this.txt_SignUpPassword);
-            this.panel_SignUp.Controls.Add(this.btn_SignUpNext);
-            this.panel_SignUp.Controls.Add(this.pictureBox3);
-            this.panel_SignUp.Location = new System.Drawing.Point(23, 20);
-            this.panel_SignUp.Name = "panel_SignUp";
-            this.panel_SignUp.Size = new System.Drawing.Size(720, 480);
-            this.panel_SignUp.TabIndex = 33;
-            this.panel_SignUp.Visible = false;
+            this.bunifuElipse1.ElipseRadius = 30;
+            this.bunifuElipse1.TargetControl = this;
             // 
-            // btn_Escape3
+            // panel_Manager
             // 
-            this.btn_Escape3.BackColor = System.Drawing.Color.Transparent;
-            this.btn_Escape3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Escape3.BackgroundImage")));
-            this.btn_Escape3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_Escape3.Location = new System.Drawing.Point(661, 0);
-            this.btn_Escape3.Name = "btn_Escape3";
-            this.btn_Escape3.Size = new System.Drawing.Size(40, 40);
-            this.btn_Escape3.TabIndex = 36;
-            this.btn_Escape3.TabStop = false;
-            this.btn_Escape3.Click += new System.EventHandler(this.btn_Escape3_Click);
+            this.panel_Manager.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel_Manager.BackgroundImage")));
+            this.panel_Manager.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel_Manager.Controls.Add(this.llb_ReturnFromManager);
+            this.panel_Manager.Controls.Add(this.label1);
+            this.panel_Manager.Controls.Add(this.label3);
+            this.panel_Manager.Controls.Add(this.txt_ManagerUsername);
+            this.panel_Manager.Controls.Add(this.label6);
+            this.panel_Manager.Controls.Add(this.txt_ManagerPassword);
+            this.panel_Manager.Controls.Add(this.btn_ManagerSignIn);
+            this.panel_Manager.Controls.Add(this.pictureBox3);
+            this.panel_Manager.Location = new System.Drawing.Point(0, 0);
+            this.panel_Manager.Name = "panel_Manager";
+            this.panel_Manager.Size = new System.Drawing.Size(720, 480);
+            this.panel_Manager.TabIndex = 35;
+            this.panel_Manager.Visible = false;
             // 
-            // llb_ReturnFromSignUp
+            // llb_ReturnFromManager
             // 
-            this.llb_ReturnFromSignUp.AutoSize = true;
-            this.llb_ReturnFromSignUp.BackColor = System.Drawing.Color.Transparent;
-            this.llb_ReturnFromSignUp.LinkColor = System.Drawing.Color.Black;
-            this.llb_ReturnFromSignUp.Location = new System.Drawing.Point(20, 20);
-            this.llb_ReturnFromSignUp.Name = "llb_ReturnFromSignUp";
-            this.llb_ReturnFromSignUp.Size = new System.Drawing.Size(46, 16);
-            this.llb_ReturnFromSignUp.TabIndex = 35;
-            this.llb_ReturnFromSignUp.TabStop = true;
-            this.llb_ReturnFromSignUp.Text = "Return";
-            this.llb_ReturnFromSignUp.VisitedLinkColor = System.Drawing.Color.Red;
-            this.llb_ReturnFromSignUp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_ReturnFromSignUp_LinkClicked);
-            // 
-            // llbSignIn
-            // 
-            this.llbSignIn.ActiveLinkColor = System.Drawing.Color.White;
-            this.llbSignIn.AutoSize = true;
-            this.llbSignIn.BackColor = System.Drawing.Color.Transparent;
-            this.llbSignIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llbSignIn.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(104)))), ((int)(((byte)(74)))));
-            this.llbSignIn.Location = new System.Drawing.Point(327, 374);
-            this.llbSignIn.Name = "llbSignIn";
-            this.llbSignIn.Size = new System.Drawing.Size(67, 20);
-            this.llbSignIn.TabIndex = 32;
-            this.llbSignIn.TabStop = true;
-            this.llbSignIn.Text = "Sign In";
-            this.llbSignIn.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbSignIn_LinkClicked);
+            this.llb_ReturnFromManager.AutoSize = true;
+            this.llb_ReturnFromManager.BackColor = System.Drawing.Color.Transparent;
+            this.llb_ReturnFromManager.LinkColor = System.Drawing.Color.Black;
+            this.llb_ReturnFromManager.Location = new System.Drawing.Point(20, 20);
+            this.llb_ReturnFromManager.Name = "llb_ReturnFromManager";
+            this.llb_ReturnFromManager.Size = new System.Drawing.Size(46, 16);
+            this.llb_ReturnFromManager.TabIndex = 34;
+            this.llb_ReturnFromManager.TabStop = true;
+            this.llb_ReturnFromManager.Text = "Return";
+            this.llb_ReturnFromManager.VisitedLinkColor = System.Drawing.Color.Red;
+            this.llb_ReturnFromManager.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_ReturnFromManager_LinkClicked);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(260, 354);
+            this.label1.Location = new System.Drawing.Point(289, 356);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(201, 20);
+            this.label1.Size = new System.Drawing.Size(141, 20);
             this.label1.TabIndex = 31;
-            this.label1.Text = "Already have an account?";
+            this.label1.Text = "Manager - Sign In";
             // 
             // label3
             // 
@@ -316,14 +272,14 @@
             this.label3.TabIndex = 30;
             this.label3.Text = "Password:";
             // 
-            // txt_SignUpUsername
+            // txt_ManagerUsername
             // 
-            this.txt_SignUpUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_SignUpUsername.Location = new System.Drawing.Point(277, 168);
-            this.txt_SignUpUsername.MaxLength = 32;
-            this.txt_SignUpUsername.Name = "txt_SignUpUsername";
-            this.txt_SignUpUsername.Size = new System.Drawing.Size(304, 34);
-            this.txt_SignUpUsername.TabIndex = 27;
+            this.txt_ManagerUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_ManagerUsername.Location = new System.Drawing.Point(277, 168);
+            this.txt_ManagerUsername.MaxLength = 32;
+            this.txt_ManagerUsername.Name = "txt_ManagerUsername";
+            this.txt_ManagerUsername.Size = new System.Drawing.Size(304, 34);
+            this.txt_ManagerUsername.TabIndex = 27;
             // 
             // label6
             // 
@@ -336,30 +292,30 @@
             this.label6.TabIndex = 29;
             this.label6.Text = "Username:";
             // 
-            // txt_SignUpPassword
+            // txt_ManagerPassword
             // 
-            this.txt_SignUpPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_SignUpPassword.Location = new System.Drawing.Point(277, 229);
-            this.txt_SignUpPassword.MaxLength = 32;
-            this.txt_SignUpPassword.Name = "txt_SignUpPassword";
-            this.txt_SignUpPassword.Size = new System.Drawing.Size(304, 34);
-            this.txt_SignUpPassword.TabIndex = 28;
-            this.txt_SignUpPassword.UseSystemPasswordChar = true;
+            this.txt_ManagerPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_ManagerPassword.Location = new System.Drawing.Point(277, 229);
+            this.txt_ManagerPassword.MaxLength = 32;
+            this.txt_ManagerPassword.Name = "txt_ManagerPassword";
+            this.txt_ManagerPassword.Size = new System.Drawing.Size(304, 34);
+            this.txt_ManagerPassword.TabIndex = 28;
+            this.txt_ManagerPassword.UseSystemPasswordChar = true;
             // 
-            // btn_SignUpNext
+            // btn_ManagerSignIn
             // 
-            this.btn_SignUpNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(104)))), ((int)(((byte)(74)))));
-            this.btn_SignUpNext.FlatAppearance.BorderSize = 0;
-            this.btn_SignUpNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_SignUpNext.Font = new System.Drawing.Font("Yu Gothic UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SignUpNext.ForeColor = System.Drawing.Color.White;
-            this.btn_SignUpNext.Location = new System.Drawing.Point(285, 291);
-            this.btn_SignUpNext.Name = "btn_SignUpNext";
-            this.btn_SignUpNext.Size = new System.Drawing.Size(150, 50);
-            this.btn_SignUpNext.TabIndex = 23;
-            this.btn_SignUpNext.Text = "NEXT";
-            this.btn_SignUpNext.UseVisualStyleBackColor = false;
-            this.btn_SignUpNext.Click += new System.EventHandler(this.btn_SignUpNext_Click);
+            this.btn_ManagerSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(104)))), ((int)(((byte)(74)))));
+            this.btn_ManagerSignIn.FlatAppearance.BorderSize = 0;
+            this.btn_ManagerSignIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_ManagerSignIn.Font = new System.Drawing.Font("Yu Gothic UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ManagerSignIn.ForeColor = System.Drawing.Color.White;
+            this.btn_ManagerSignIn.Location = new System.Drawing.Point(285, 291);
+            this.btn_ManagerSignIn.Name = "btn_ManagerSignIn";
+            this.btn_ManagerSignIn.Size = new System.Drawing.Size(150, 50);
+            this.btn_ManagerSignIn.TabIndex = 23;
+            this.btn_ManagerSignIn.Text = "SIGN IN";
+            this.btn_ManagerSignIn.UseVisualStyleBackColor = false;
+            this.btn_ManagerSignIn.Click += new System.EventHandler(this.btn_ManagerSignIn_Click);
             // 
             // pictureBox3
             // 
@@ -372,10 +328,18 @@
             this.pictureBox3.TabIndex = 22;
             this.pictureBox3.TabStop = false;
             // 
-            // bunifuElipse1
+            // btn_Escape
             // 
-            this.bunifuElipse1.ElipseRadius = 30;
-            this.bunifuElipse1.TargetControl = this;
+            this.btn_Escape.AutoSize = true;
+            this.btn_Escape.BackColor = System.Drawing.Color.Transparent;
+            this.btn_Escape.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Escape.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Escape.Location = new System.Drawing.Point(649, 14);
+            this.btn_Escape.Name = "btn_Escape";
+            this.btn_Escape.Size = new System.Drawing.Size(32, 31);
+            this.btn_Escape.TabIndex = 36;
+            this.btn_Escape.Text = "X";
+            this.btn_Escape.Click += new System.EventHandler(this.btn_Escape_Click);
             // 
             // form_Home
             // 
@@ -384,8 +348,10 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(702, 433);
+            this.Controls.Add(this.btn_Escape);
+            this.Controls.Add(this.panel_Manager);
             this.Controls.Add(this.panel_SignIn);
-            this.Controls.Add(this.btn_SignUp);
+            this.Controls.Add(this.btn_Manager);
             this.Controls.Add(this.btn_SignIn);
             this.Controls.Add(this.pictureBox2);
             this.DoubleBuffered = true;
@@ -400,18 +366,18 @@
             this.panel_SignIn.ResumeLayout(false);
             this.panel_SignIn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel_SignUp.ResumeLayout(false);
-            this.panel_SignUp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_Escape3)).EndInit();
+            this.panel_Manager.ResumeLayout(false);
+            this.panel_Manager.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button btn_SignUp;
+        private System.Windows.Forms.Button btn_Manager;
         private System.Windows.Forms.Button btn_SignIn;
         private System.Windows.Forms.Panel panel_SignIn;
         private System.Windows.Forms.Label label4;
@@ -420,21 +386,19 @@
         private System.Windows.Forms.TextBox txt_SignInPassword;
         private System.Windows.Forms.Button btn_SignIn2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.LinkLabel llb_SignUp;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel_SignUp;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txt_SignUpUsername;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txt_SignUpPassword;
-        private System.Windows.Forms.Button btn_SignUpNext;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.LinkLabel llbSignIn;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel llb_ReturnFromSignIn;
-        private System.Windows.Forms.LinkLabel llb_ReturnFromSignUp;
-        private System.Windows.Forms.PictureBox btn_Escape3;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
+        private System.Windows.Forms.Panel panel_Manager;
+        private System.Windows.Forms.LinkLabel llb_ReturnFromManager;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txt_ManagerUsername;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txt_ManagerPassword;
+        private System.Windows.Forms.Button btn_ManagerSignIn;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label btn_Escape;
     }
 }
 
