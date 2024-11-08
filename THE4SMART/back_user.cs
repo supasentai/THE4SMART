@@ -89,9 +89,5 @@ namespace THE4SMART
             base.GetObjectData(info, context);
             info.AddValue("StaffShift", StaffShift);
         }
-        public override void ShowInfo()
-        {
-            Console.WriteLine($"Staff ID: {User_id}, Name: {User_name}, Shift: {StaffShift}");
-        }
     }
 }

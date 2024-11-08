@@ -18,11 +18,6 @@ public class list_Manager : ISerializable
     {
         Managers = (List<Manager>)info.GetValue("Managers", typeof(List<Manager>));
     }
-    public void Add(Manager item)
-    {
-        Managers.Add(item);
-    }
-    
 }
 public class ManagerList
 {
