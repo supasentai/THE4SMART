@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
 using System.IO;
@@ -102,7 +101,25 @@ public class list_Staff : ISerializable
         StaffList staffList = JsonConvert.DeserializeObject<StaffList>(jsonData);
 
         // Kiểm tra xem StaffId có tồn tại không
-        bool staffNotFound = !staffList.Staffs.Any(staff => staff.User_id == id);
+        bool staffNotFound = true;
+
+        foreach (var staff in staffList.Staffs)
+        {
+            if (staff.User_id == id)
+            {
+                staffNotFound = false;
+                break;
+            }
+        }
+
+        if (staffNotFound)
+        {
+            MessageBox.Show("Staff member with the specified ID not found.");
+        }
+        else
+        {
+            // Proceed with removing the staff member or other actions
+        }
 
         return staffNotFound;
     }

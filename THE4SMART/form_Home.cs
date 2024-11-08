@@ -1,12 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
+﻿using System;
 using System.Windows.Forms;
-using System.Runtime.CompilerServices;
-using System.Net;
-using System.Xml.Linq;
 
 namespace THE4SMART
 {

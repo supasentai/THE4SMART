@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Text.Json;
 using THE4SMART;
 
@@ -24,17 +22,6 @@ public class back_menu
             // Nếu file không tồn tại, khởi tạo danh sách khách hàng mới
             productList = new list_product();
         }
-        /*int quantity = 0;
-        Console.WriteLine("Nhập thông tin sp:");
-        Console.Write("ID: ");
-        string id = Console.ReadLine();
-        Console.Write("soluong: ");
-        quantity = int.Parse(Console.ReadLine());
-        Console.Write("gia ");
-        int price = int.Parse(Console.ReadLine());
-
-        productList.Add(new Product(id, quantity, price));*/
-
         // Ghi lại toàn bộ danh sách khách hàng vào file JSON
         string newJsonProduct = JsonSerializer.Serialize(productList, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(fileProduct, newJsonProduct);

@@ -1,10 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using System;
-using THE4SMART;
 using Newtonsoft.Json;
-using System.IO;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
 [Serializable]
 public class Product : ISerializable

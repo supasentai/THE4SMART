@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -530,7 +528,6 @@ namespace THE4SMART
             }
             txt_TotalPrice.Text = string.Empty;
         }
-
         private void btn_Sack_Click(object sender, EventArgs e)
         {
             string filePath = @"staffList.json"; // Path to your JSON file
