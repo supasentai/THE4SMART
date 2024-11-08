@@ -26,33 +26,27 @@ namespace THE4SMART
         }
         private void form_homepage_Load(object sender, EventArgs e)
         {
-            string json_product = File.ReadAllText(@"productList.json");
+            string json_product = File.ReadAllText(@"productList.json");    //đọc DL sản phẩm
             ProductWrapper productWrapper = JsonConvert.DeserializeObject<ProductWrapper>(json_product);
-            dataGridView1.DataSource = ProductList.dataTableProduct(productWrapper.Products);
-            dataGridViewStorage.DataSource = ProductList.dataTableProduct(productWrapper.Products);
-
-            string json_staff = File.ReadAllText(@"staffList.json");
-            StaffWrapper staffWrapper = JsonConvert.DeserializeObject<StaffWrapper>(json_staff);
-            dataGridViewStaff.DataSource = StaffList.dataTableStaff(staffWrapper.Staffs);
-
-            ProductList = LoadProductsFromJson(@"productList.json");
-
-            if (ProductList.Products == null || ProductList.Products.Count == 0)
+            
+            if (productWrapper == null || productWrapper.Products == null || productWrapper.Products.Count == 0)
             {
                 MessageBox.Show("Danh sách sản phẩm trống hoặc không thể đọc dữ liệu từ file JSON.");
                 return;
             }
+            dataGridView1.DataSource = ProductList.dataTableProduct(productWrapper.Products);
 
-            dataGridView1.DataSource = ProductList.dataTableProduct(ProductList.Products);
-            dataGridViewStorage.DataSource = ProductList.dataTableProduct(ProductList.Products);
+            updateCategory(@"productList.json");
 
-            StaffList = LoadStaffsFromJson(@"staffList.json");
+            string json_staff = File.ReadAllText(@"staffList.json");    //đọc DL nhân viên
+            StaffWrapper staffWrapper = JsonConvert.DeserializeObject<StaffWrapper>(json_staff);
+            StaffList = new list_Staff();
+            StaffList.Staffs = staffWrapper.Staffs;
+
             if (StaffList.Staffs != null)
             {
                 dataGridViewStaff.DataSource = StaffList.dataTableStaff(StaffList.Staffs);
             }
-            updateCategory(@"productList.json");
-
             if(list_Manager.permission) panel_Permision.Visible = false;
         }
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -120,22 +114,12 @@ namespace THE4SMART
                 MessageBox.Show("Không tìm thấy sản phẩm với ID đã nhập.");
             }
         }
-        private list_product LoadProductsFromJson(string filePath)
-        {
-            if (!File.Exists(filePath))
-            {
-                return new list_product();
-            }
-
-            string jsonData = File.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<list_product>(jsonData) ?? new list_product();
-        }
         private void btn_StaffAdd_Click(object sender, EventArgs e)
         {
             try
             {
                 if (StaffList.CheckStaffNotExist(txt_StaffID.Text))
-                {//string user_id, string user_password, string user_name, string user_phone, string user_address, string staffShift
+                {
                     Staff newStaff = new Staff(
                         txt_StaffID.Text,
                         txt_StaffPassword.Text,
@@ -147,7 +131,7 @@ namespace THE4SMART
                     StaffList.AddStaffToFile(newStaff);
                     // Đọc dữ liệu từ file JSON và cập nhật lại DataGridView
                     string filePath = @"staffList.json";
-                    StaffList = LoadStaffsFromJson(filePath);
+                    StaffList = StaffList.LoadStaffsFromJson(filePath);
 
                     // Làm mới DataGridView với dữ liệu mới
                     dataGridViewStaff.DataSource = null;
@@ -159,16 +143,6 @@ namespace THE4SMART
             {
                 MessageBox.Show("Please enter valid numbers for Quantity and Price.");
             }
-        }
-        private list_Staff LoadStaffsFromJson(string filePath)
-        {
-            if (!File.Exists(filePath))
-            {
-                return new list_Staff();
-            }
-
-            string jsonData = File.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<list_Staff>(jsonData) ?? new list_Staff();
         }
         private void pictureBox3_Click(object sender, EventArgs e)
         {
@@ -187,7 +161,6 @@ namespace THE4SMART
                 MessageBox.Show("File productList.json không tồn tại.");
                 return;
             }
-            // Đọc dữ liệu từ file JSON
             string jsonData = File.ReadAllText(filePath);
             ProductWrapper productsWrapper = JsonConvert.DeserializeObject<ProductWrapper>(jsonData);
 
@@ -209,12 +182,14 @@ namespace THE4SMART
         private void cbb_CartCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbb_CartName.Items.Clear();
-
+            
+            string json_product = File.ReadAllText(@"productList.json");    //đọc DL sản phẩm
+            ProductWrapper productWrapper = JsonConvert.DeserializeObject<ProductWrapper>(json_product);
             string selectedCategory = cbb_CartCategory.SelectedItem.ToString();
 
             if (selectedCategory == null) return;
 
-            List<string> filteredProducts = ProductList.Products
+            List<string> filteredProducts = productWrapper.Products
                 .Where(product => product.ProductCategory == selectedCategory)
                 .Select(product => product.ProductName)
                 .ToList();
@@ -254,14 +229,10 @@ namespace THE4SMART
         private void RefreshDataGridView()
         {
             string filePath = @"productList.json";
-            ProductList = LoadProductsFromJson(filePath);
+            ProductList = ProductList.LoadProductsFromJson(filePath);
 
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = ProductList.dataTableProduct(ProductList.Products);
-
-            dataGridViewStorage.DataSource = null;
-            dataGridViewStorage.DataSource = ProductList.dataTableProduct(ProductList.Products);
-
         }
         private DataTable dataTableCart(List<Product> products)
         {
@@ -433,7 +404,7 @@ namespace THE4SMART
                 }
             }
         }
-        private void printCart_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        private void printCart_PrintPage(object sender, PrintPageEventArgs e)
         {
             // Define basic settings for printing
             float yPos = e.MarginBounds.Top; // Start printing from the top margin
@@ -558,6 +529,52 @@ namespace THE4SMART
                 MessageBox.Show("No rows to clear.");
             }
             txt_TotalPrice.Text = string.Empty;
+        }
+
+        private void btn_Sack_Click(object sender, EventArgs e)
+        {
+            string filePath = @"staffList.json"; // Path to your JSON file
+            string staffIdToRemove = txt_SackID.Text; // Get the ID to remove from the text box
+
+            // Load the staff list from the JSON file
+            StaffWrapper staffWrapper;
+            if (File.Exists(filePath))
+            {
+                string jsonData = File.ReadAllText(filePath);
+                staffWrapper = JsonConvert.DeserializeObject<StaffWrapper>(jsonData) ?? new StaffWrapper();
+            }
+            else
+            {
+                MessageBox.Show("Staff file not found.");
+                return;
+            }
+
+            // Check if the staff list is null or empty
+            if (staffWrapper.Staffs == null || staffWrapper.Staffs.Count == 0)
+            {
+                MessageBox.Show("No staff members found.");
+                return;
+            }
+
+            // Find and remove the staff member with the specified ID
+            var staffToRemove = staffWrapper.Staffs.FirstOrDefault(s => s.User_id == staffIdToRemove);
+            if (staffToRemove != null)
+            {
+                staffWrapper.Staffs.Remove(staffToRemove);
+
+                // Save the updated staff list back to the JSON file
+                File.WriteAllText(filePath, JsonConvert.SerializeObject(staffWrapper, Formatting.Indented));
+
+                MessageBox.Show("Staff member removed successfully.");
+
+                // Refresh the DataGridView
+                dataGridViewStaff.DataSource = null;
+                dataGridViewStaff.DataSource = StaffList.dataTableStaff(staffWrapper.Staffs);
+            }
+            else
+            {
+                MessageBox.Show("Staff member with the specified ID not found.");
+            }
         }
     }
 }

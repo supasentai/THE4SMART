@@ -2,138 +2,138 @@
   "Products": [
     {
       "ProductId": "1",
-      "ProductName": "Cà chua",
       "ProductQuantity": 100,
       "ProductPrice": 5,
-      "ProductCategory": "Thực phẩm",
+      "ProductName": "C\u00E0 chua",
       "ProductManufacturer": "VTP",
-      "ProductDiscount": 0.0
+      "ProductCategory": "Th\u1EF1c ph\u1EA9m",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "2",
-      "ProductName": "Cà rốt",
       "ProductQuantity": 100,
       "ProductPrice": 3,
-      "ProductCategory": "Thực phẩm",
+      "ProductName": "C\u00E0 r\u1ED1t",
       "ProductManufacturer": "VTP",
-      "ProductDiscount": 0.0
+      "ProductCategory": "Th\u1EF1c ph\u1EA9m",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "3",
-      "ProductName": "Bí đao",
       "ProductQuantity": 100,
       "ProductPrice": 4,
-      "ProductCategory": "Thực phẩm",
+      "ProductName": "B\u00ED \u0111ao",
       "ProductManufacturer": "VTP",
-      "ProductDiscount": 0.0
+      "ProductCategory": "Th\u1EF1c ph\u1EA9m",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "4",
-      "ProductName": "Khoai lang",
       "ProductQuantity": 100,
       "ProductPrice": 2,
-      "ProductCategory": "Thực phẩm",
+      "ProductName": "Khoai lang",
       "ProductManufacturer": "VTP",
-      "ProductDiscount": 0.0
+      "ProductCategory": "Th\u1EF1c ph\u1EA9m",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "5",
-      "ProductName": "Bí đỏ",
       "ProductQuantity": 100,
       "ProductPrice": 6,
-      "ProductCategory": "Thực phẩm",
+      "ProductName": "B\u00ED \u0111\u1ECF",
       "ProductManufacturer": "VTP",
-      "ProductDiscount": 0.0
+      "ProductCategory": "Th\u1EF1c ph\u1EA9m",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "6",
-      "ProductName": "IPhone 17",
-      "ProductQuantity": 90,
+      "ProductQuantity": 100,
       "ProductPrice": 500,
-      "ProductCategory": "Điện tử",
+      "ProductName": "IPhone 17",
       "ProductManufacturer": "Lowtech",
-      "ProductDiscount": 0.0
+      "ProductCategory": "\u0110i\u1EC7n t\u1EED",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "7",
-      "ProductName": "Laptop",
       "ProductQuantity": 100,
       "ProductPrice": 800,
-      "ProductCategory": "Điện tử",
+      "ProductName": "Laptop",
       "ProductManufacturer": "Lowtech",
-      "ProductDiscount": 0.0
+      "ProductCategory": "\u0110i\u1EC7n t\u1EED",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "8",
-      "ProductName": "Tai nghe Bluetooth",
-      "ProductQuantity": 90,
+      "ProductQuantity": 100,
       "ProductPrice": 120,
-      "ProductCategory": "Điện tử",
+      "ProductName": "Tai nghe Bluetooth",
       "ProductManufacturer": "Lowtech",
-      "ProductDiscount": 0.0
+      "ProductCategory": "\u0110i\u1EC7n t\u1EED",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "9",
-      "ProductName": "Tablet",
       "ProductQuantity": 100,
       "ProductPrice": 300,
-      "ProductCategory": "Điện tử",
+      "ProductName": "Tablet",
       "ProductManufacturer": "Lowtech",
-      "ProductDiscount": 0.0
+      "ProductCategory": "\u0110i\u1EC7n t\u1EED",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "10",
-      "ProductName": "Chuột không dây",
       "ProductQuantity": 100,
       "ProductPrice": 50,
-      "ProductCategory": "Điện tử",
+      "ProductName": "Chu\u1ED9t kh\u00F4ng d\u00E2y",
       "ProductManufacturer": "Lowtech",
-      "ProductDiscount": 0.0
+      "ProductCategory": "\u0110i\u1EC7n t\u1EED",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "11",
-      "ProductName": "Áo thun",
       "ProductQuantity": 100,
       "ProductPrice": 20,
-      "ProductCategory": "Quần áo",
+      "ProductName": "\u00C1o thun",
       "ProductManufacturer": "UNIQLA",
-      "ProductDiscount": 0.0
+      "ProductCategory": "Qu\u1EA7n \u00E1o",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "12",
-      "ProductName": "Quần jeans",
       "ProductQuantity": 100,
       "ProductPrice": 30,
-      "ProductCategory": "Quần áo",
+      "ProductName": "Qu\u1EA7n jeans",
       "ProductManufacturer": "UNIQLA",
-      "ProductDiscount": 0.0
+      "ProductCategory": "Qu\u1EA7n \u00E1o",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "13",
-      "ProductName": "Áo khoác",
       "ProductQuantity": 100,
       "ProductPrice": 25,
-      "ProductCategory": "Quần áo",
+      "ProductName": "\u00C1o kho\u00E1c",
       "ProductManufacturer": "UNIQLA",
-      "ProductDiscount": 0.0
+      "ProductCategory": "Qu\u1EA7n \u00E1o",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "14",
-      "ProductName": "Mũ lưỡi trai",
       "ProductQuantity": 100,
       "ProductPrice": 15,
-      "ProductCategory": "Quần áo",
+      "ProductName": "M\u0169 l\u01B0\u1EE1i trai",
       "ProductManufacturer": "UNIQLA",
-      "ProductDiscount": 0.0
+      "ProductCategory": "Qu\u1EA7n \u00E1o",
+      "ProductDiscount": 0
     },
     {
       "ProductId": "15",
-      "ProductName": "Áo sơ mi",
       "ProductQuantity": 100,
       "ProductPrice": 40,
-      "ProductCategory": "Quần áo",
+      "ProductName": "\u00C1o s\u01A1 mi",
       "ProductManufacturer": "UNIQLA",
-      "ProductDiscount": 0.0
+      "ProductCategory": "Qu\u1EA7n \u00E1o",
+      "ProductDiscount": 0
     }
   ]
 }

@@ -26,9 +26,7 @@ public class list_product: ISerializable
     public void Add(string id, int quantity)
     {
         string filePath = @"productList.json";
-
-        // Load products from the JSON file
-        ProductList loadedProducts = LoadProductsFromJson(filePath);
+        ProductList loadedProducts = ProductList.LoadProductsFromJson(filePath);
         List<Product> products = loadedProducts?.Products;
 
         if (products == null)
@@ -52,32 +50,22 @@ public class list_product: ISerializable
             MessageBox.Show("Product with specified ID not found.");
         }
     }
-    public ProductList LoadProductsFromJson(string filePath)
+    public list_product LoadProductsFromJson(string filePath)
     {
         if (!File.Exists(filePath))
         {
-            Console.WriteLine("File not found.");
-            return null;
+            return new list_product();
         }
 
-        try
-        {
-            string jsonData = File.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<ProductList>(jsonData);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error reading JSON file: {ex.Message}");
-            return null;
-        }
+        string jsonData = File.ReadAllText(filePath);
+        return JsonConvert.DeserializeObject<list_product>(jsonData) ?? new list_product();
     }
-
     public Product CheckProduct(string id)
     {
         string fileProducts = @"productList.json";
         try
         {
-            ProductList loadedProducts = LoadProductsFromJson(fileProducts);
+            ProductList loadedProducts = ProductList.LoadProductsFromJson(fileProducts);
             List<Product> products = loadedProducts?.Products;
 
             foreach (Product product in products)
@@ -162,7 +150,16 @@ public class list_product: ISerializable
 public class ProductList
 {
     public List<Product> Products { get; set; }
+    public static ProductList LoadProductsFromJson(string filePath)
+    {
+        if (!File.Exists(filePath))
+        {
+            return new ProductList();
+        }
 
+        string jsonData = File.ReadAllText(filePath);
+        return JsonConvert.DeserializeObject<ProductList>(jsonData) ?? new ProductList();
+    }
 }
 public class ProductWrapper
 {

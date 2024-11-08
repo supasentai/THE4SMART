@@ -1,36 +1,36 @@
 {
   "Staffs": [
     {
-      "StaffShift": "0-4h",
       "User_id": "111",
       "User_Password": "111",
       "User_name": "NHAN VIEN 1",
       "User_Phone": "19001111",
-      "User_Address": "QUAN 1"
+      "User_Address": "QUAN 1",
+      "StaffShift": "0-4h"
     },
     {
-      "StaffShift": "4-8h",
       "User_id": "222",
       "User_Password": "222",
       "User_name": "NHAN VIEN 2",
       "User_Phone": "19002222",
-      "User_Address": "QUAN 2"
+      "User_Address": "QUAN 2",
+      "StaffShift": "4-8h"
     },
     {
-      "StaffShift": "8-12h",
       "User_id": "333",
       "User_Password": "333",
       "User_name": "NHAN VIEN 3",
       "User_Phone": "19003333",
-      "User_Address": "QUAN 3"
+      "User_Address": "QUAN 3",
+      "StaffShift": "8-12h"
     },
     {
-      "StaffShift": "12-16h",
       "User_id": "444",
-      "User_Password": "4444",
+      "User_Password": "444",
       "User_name": "NHAN VIEN 4",
       "User_Phone": "19004444",
-      "User_Address": "QUAN 4"
+      "User_Address": "QUAN 4",
+      "StaffShift": "12-16h"
     }
   ]
 }

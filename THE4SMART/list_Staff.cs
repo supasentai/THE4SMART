@@ -28,21 +28,17 @@ public class list_Staff : ISerializable
     {
         Staffs.Add(nv);
     }
-    public StaffList LoadUsersFromJson(string filePath)
+    
+    public list_Staff LoadStaffsFromJson(string filePath)
     {
-        try
+        if (!File.Exists(filePath))
         {
-            string jsonData = File.ReadAllText(filePath);
-            StaffList users = JsonConvert.DeserializeObject<StaffList>(jsonData); // Deserialize thành đối tượng StaffList
-            return users;
+            return new list_Staff();
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Có lỗi xảy ra: {ex.Message}");
-            return null;
-        }
-    }
 
+        string jsonData = File.ReadAllText(filePath);
+        return JsonConvert.DeserializeObject<list_Staff>(jsonData) ?? new list_Staff();
+    }
 
     public void check_user(string username, string password)
     {
@@ -50,7 +46,7 @@ public class list_Staff : ISerializable
 
         try
         {
-            StaffList loadedUsers = LoadUsersFromJson(fileStaffs);
+            StaffList loadedUsers = StaffList.LoadUsersFromJson(fileStaffs);
             if (loadedUsers == null)
             {
                 MessageBox.Show("Failed to load users.");
@@ -156,7 +152,20 @@ public class list_Staff : ISerializable
 public class StaffList
 {
     public List<Staff> Staffs { get; set; }
-
+    public static StaffList LoadUsersFromJson(string filePath)
+    {
+        try
+        {
+            string jsonData = File.ReadAllText(filePath);
+            StaffList users = JsonConvert.DeserializeObject<StaffList>(jsonData); // Deserialize thành đối tượng StaffList
+            return users;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Có lỗi xảy ra: {ex.Message}");
+            return null;
+        }
+    }
 }
 public class StaffWrapper
 {
