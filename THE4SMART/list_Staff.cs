@@ -10,39 +10,29 @@ using System.Data;
 [Serializable]
 public class list_Staff : ISerializable
 {
-    public static bool isSignIN = false;
+    public static bool isSignIN = false; //tạo biến kiểm tra đăng nhập thành công
     public List<Staff> Staffs { get; set; } = new List<Staff>();
     public list_Staff() { }
     public void GetObjectData(SerializationInfo info, StreamingContext context)
-    {
+    {//serialized
         info.AddValue("Staffs", Staffs);
     }
-
     public list_Staff(SerializationInfo info, StreamingContext context)
     {
         Staffs = (List<Staff>)info.GetValue("Staffs", typeof(List<Staff>));
     }
-    
-    public void Add(Staff nv)
-    {
-        Staffs.Add(nv);
-    }
-    
     public list_Staff LoadStaffsFromJson(string filePath)
     {
         if (!File.Exists(filePath))
         {
             return new list_Staff();
         }
-
         string jsonData = File.ReadAllText(filePath);
         return JsonConvert.DeserializeObject<list_Staff>(jsonData) ?? new list_Staff();
     }
-
     public void check_user(string username, string password)
-    {
-        string fileStaffs = @"staffList.json"; // Ensure this path is correct
-
+    {//kiểm tra TT đăng nhập
+        string fileStaffs = @"staffList.json";
         try
         {
             StaffList loadedUsers = StaffList.LoadUsersFromJson(fileStaffs);
@@ -51,14 +41,10 @@ public class list_Staff : ISerializable
                 MessageBox.Show("Failed to load users.");
                 return;
             }
-
             List<Staff> users = loadedUsers.Staffs;
 
             string enteredUsername = username.Trim().ToLower();
             string enteredPassword = password.Trim();
-            Console.WriteLine(enteredUsername);
-            // Debugging output
-            Console.WriteLine($"Entered Username: {enteredUsername}, Entered Password: {enteredPassword}");
 
             Staff loggedInStaff = null;
             foreach (Staff user in users)
@@ -66,7 +52,7 @@ public class list_Staff : ISerializable
                 if (user.User_id == enteredUsername && user.User_Password == enteredPassword)
                 {
                     loggedInStaff = user;
-                    break; // Exit the loop once a match is found
+                    break;
                 }
             }
             if (loggedInStaff != null)
@@ -76,9 +62,8 @@ public class list_Staff : ISerializable
                 Form currentForm = Application.OpenForms["form_Home"];
                 if (currentForm != null)
                 {
-                    currentForm.Close(); // Hoặc bạn có thể dùng this.Close() nếu gọi từ form_Home
+                    currentForm.Close();
                 }
-
             }
             else
             {
@@ -93,17 +78,17 @@ public class list_Staff : ISerializable
     }
     public bool CheckStaffNotExist(string id)
     {
-        // Đọc file JSON
+        //đọc file JSON
         string filePath = @"staffList.json";
         string jsonData = File.ReadAllText(filePath);
 
-        // Chuyển đổi JSON thành đối tượng StaffList
+        //convert JSON thành đối tượng StaffList
         StaffList staffList = JsonConvert.DeserializeObject<StaffList>(jsonData);
 
-        // Kiểm tra xem StaffId có tồn tại không
+        //?StaffId có tồn tại
         bool staffNotFound = true;
 
-        foreach (var staff in staffList.Staffs)
+        foreach (Staff staff in staffList.Staffs)
         {
             if (staff.User_id == id)
             {
@@ -111,57 +96,43 @@ public class list_Staff : ISerializable
                 break;
             }
         }
-
-        if (staffNotFound)
-        {
-            MessageBox.Show("Staff member with the specified ID not found.");
-        }
-        else
-        {
-            // Proceed with removing the staff member or other actions
-        }
-
         return staffNotFound;
     }
     public void AddStaffToFile(Staff newStaff)
     {
-        // Đường dẫn đến file JSON
         string filePath = @"staffList.json";
-
-        // Đọc dữ liệu hiện tại từ file JSON
         StaffList staffList;
 
         if (File.Exists(filePath))
         {
-            // Nếu file tồn tại, đọc và chuyển đổi dữ liệu JSON thành đối tượng StaffList
+            //Nếu file tồn tại, convert dữ liệu JSON thành StaffList
             string jsonData = File.ReadAllText(filePath);
             staffList = JsonConvert.DeserializeObject<StaffList>(jsonData) ?? new StaffList();
         }
         else
         {
-            // Nếu file không tồn tại, tạo đối tượng StaffList mới
+            //nếu file không tồn tại, tạo StaffList mới
             staffList = new StaffList();
         }
 
-        // Thêm sản phẩm mới vào danh sách
         staffList.Staffs.Add(newStaff);
 
-        // Ghi lại danh sách vào file JSON
+        //serialized
         string updatedJsonData = JsonConvert.SerializeObject(staffList, Formatting.Indented);
         File.WriteAllText(filePath, updatedJsonData);
     }
     public DataTable dataTableStaff(List<Staff> staffs)
-    {
+    {//tạo bảng
         DataTable dataTable = new DataTable();
         dataTable.Columns.Add("Id");
         dataTable.Columns.Add("Name");
         dataTable.Columns.Add("Shift");
         dataTable.Columns.Add("Address");
         dataTable.Columns.Add("Phone");
-        // Add rows
+
         foreach (Staff staff in staffs)
         {
-            dataTable.Rows.Add(staff.User_id, staff.User_name, staff.StaffShift, staff.User_Address, staff.User_Phone); // Adjust properties accordingly
+            dataTable.Rows.Add(staff.User_id, staff.User_name, staff.StaffShift, staff.User_Address, staff.User_Phone);
         }
         return dataTable;
     }
@@ -174,7 +145,7 @@ public class StaffList
         try
         {
             string jsonData = File.ReadAllText(filePath);
-            StaffList users = JsonConvert.DeserializeObject<StaffList>(jsonData); // Deserialize thành đối tượng StaffList
+            StaffList users = JsonConvert.DeserializeObject<StaffList>(jsonData); //deserialize
             return users;
         }
         catch (Exception ex)

@@ -6,16 +6,13 @@ namespace THE4SMART
     public partial class form_Home : Form
     {
         private list_Staff staffList;
-        private list_Manager managerList;
         public Manager admin = new Manager("1", "123", "123", "19001010", "Quan 1");
 
         public form_Home()
         {
             InitializeComponent();
             staffList = new list_Staff();
-            managerList = new list_Manager();
         }
-
         private void btn_SignIn_Click(object sender, EventArgs e)
         {
             panel_SignIn.Visible = true;
@@ -23,7 +20,6 @@ namespace THE4SMART
             txt_SignInUsername.Text = "";
             txt_SignInPassword.Text = "";
         }
-
         private void btn_Manager_Click(object sender, EventArgs e)
         {
             panel_SignIn.Visible = false;
@@ -36,8 +32,7 @@ namespace THE4SMART
             staffList.check_user(txt_SignInUsername.Text, txt_SignInPassword.Text);
             if (list_Staff.isSignIN)
             {
-
-                // Đăng nhập thành công, đóng form với DialogResult.OK
+                //Đăng nhập thành công thì DialogResult.OK
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -47,7 +42,6 @@ namespace THE4SMART
             back_menu.init_staff();
             back_menu.init_product();
         }
-
         private void btn_ManagerSignIn_Click(object sender, EventArgs e)
         {
             if (txt_ManagerPassword.Text == admin.User_Password && txt_ManagerUsername.Text == admin.User_name)
@@ -63,19 +57,16 @@ namespace THE4SMART
                 this.DialogResult = DialogResult.OK;
             }
         }
-
         private void llb_ReturnFromSignIn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             panel_SignIn.Visible = false;
             panel_Manager.Visible = false;
         }
-
         private void llb_ReturnFromManager_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             panel_SignIn.Visible = false;
             panel_Manager.Visible = false;
         }
-
         private void btn_Escape_Click(object sender, EventArgs e)
         {
             Close();

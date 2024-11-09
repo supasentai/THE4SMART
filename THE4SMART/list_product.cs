@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
 using System.IO;
-using THE4SMART;
-using System.Linq;
-using System.Xml.Linq;
 using System.Data;
 
 [Serializable]
@@ -34,15 +31,22 @@ public class list_product: ISerializable
             MessageBox.Show("Product list is empty or failed to load.");
             return;
         }
-
-        // Find the product with the specified ID and increase its quantity
-        Product productToAdd = products.FirstOrDefault(product => product.ProductId == id);
+        //tìm product với id tương ứng
+        Product productToAdd = null;
+        foreach (Product product in products)
+        {
+            if (product.ProductId == id)
+            {
+                productToAdd = product;
+                break;
+            }
+        }
 
         if (productToAdd != null)
         {
-            productToAdd.ProductQuantity += quantity; // Increase the quantity by 1 (or any other number as needed)
+            productToAdd.ProductQuantity += quantity; //tăng 1 lượng nhapaj vào
 
-            // Save the updated product list back to the JSON file
+            //serialized
             File.WriteAllText(filePath, JsonConvert.SerializeObject(loadedProducts, Formatting.Indented));
         }
         else
@@ -56,7 +60,6 @@ public class list_product: ISerializable
         {
             return new list_product();
         }
-
         string jsonData = File.ReadAllText(filePath);
         return JsonConvert.DeserializeObject<list_product>(jsonData) ?? new list_product();
     }
@@ -72,11 +75,11 @@ public class list_product: ISerializable
             {
                 if (id == product.ProductId)
                 {
-                    return product; // Trả về đối tượng sản phẩm tìm thấy
+                    return product;
                 }
                 else if (id == product.ProductName)
                 {
-                    return product; // Trả về đối tượng sản phẩm tìm thấy
+                    return product;
                 };
             }
         }
@@ -85,54 +88,56 @@ public class list_product: ISerializable
             Console.WriteLine($"Lỗi khi tải sản phẩm: {ex.Message}");
             MessageBox.Show("Có lỗi xảy ra. Vui lòng thử lại sau.");
         }
-
-        return null; // Trả về null nếu không tìm thấy sản phẩm
+        return null;
     }
     public bool CheckProductNotExist(string id)
     {
-        // Đọc file JSON
         string filePath = @"productList.json";
         string jsonData = File.ReadAllText(filePath);
 
-        // Chuyển đổi JSON thành đối tượng ProductList
+        //convert JSON thành ProductList
         ProductList productList = JsonConvert.DeserializeObject<ProductList>(jsonData);
 
-        // Kiểm tra xem ProductId có tồn tại không
-        bool productNotFound = !productList.Products.Any(product => product.ProductId == id);
-
+        //check productId tồn tại không
+        bool productNotFound = true; 
+        foreach (Product product in productList.Products)
+        {
+            if (product.ProductId == id)
+            {
+                productNotFound = false; 
+                break;
+            }
+        }
         return productNotFound;
     }
     public void AddProductToFile(Product newProduct)
     {
-        // Đường dẫn đến file JSON
         string filePath = @"productList.json";
 
-        // Đọc dữ liệu hiện tại từ file JSON
         ProductList productList;
 
         if (File.Exists(filePath))
         {
-            // Nếu file tồn tại, đọc và chuyển đổi dữ liệu JSON thành đối tượng ProductList
+            //nếu file tồn tại, convert JSON thành ProductList
             string jsonData = File.ReadAllText(filePath);
             productList = JsonConvert.DeserializeObject<ProductList>(jsonData) ?? new ProductList();
         }
         else
         {
-            // Nếu file không tồn tại, tạo đối tượng ProductList mới
+            //nếu file không tồn tại, tạo ProductList mới
             productList = new ProductList();
         }
 
-        // Thêm sản phẩm mới vào danh sách
         productList.Products.Add(newProduct);
 
-        // Ghi lại danh sách vào file JSON
+        //serialize
         string updatedJsonData = JsonConvert.SerializeObject(productList, Formatting.Indented);
         File.WriteAllText(filePath, updatedJsonData);
     }
     public DataTable dataTableProduct(List<Product> products)
     {
         DataTable dataTable = new DataTable();
-        dataTable.Columns.Add("Id"); // Adjust column names accordingly
+        dataTable.Columns.Add("Id"); 
         dataTable.Columns.Add("Name");
         dataTable.Columns.Add("Price");
         dataTable.Columns.Add("Quatity");
@@ -141,11 +146,10 @@ public class list_product: ISerializable
 
         foreach (Product product in products)
         {
-            dataTable.Rows.Add(product.ProductId, product.ProductName, product.ProductPrice, product.ProductQuantity, product.ProductCategory, product.ProductManufacturer); // Adjust properties accordingly
+            dataTable.Rows.Add(product.ProductId, product.ProductName, product.ProductPrice, product.ProductQuantity, product.ProductCategory, product.ProductManufacturer);
         }
         return dataTable;
     }
-    
 }
 public class ProductList
 {
@@ -156,7 +160,6 @@ public class ProductList
         {
             return new ProductList();
         }
-
         string jsonData = File.ReadAllText(filePath);
         return JsonConvert.DeserializeObject<ProductList>(jsonData) ?? new ProductList();
     }

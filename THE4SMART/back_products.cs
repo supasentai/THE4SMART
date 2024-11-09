@@ -1,6 +1,5 @@
 ﻿using System.Runtime.Serialization;
 using System;
-using Newtonsoft.Json;
 
 [Serializable]
 public class Product : ISerializable
@@ -11,8 +10,8 @@ public class Product : ISerializable
     public string ProductName { get; set; }
     public string ProductManufacturer { get; set; }
     public string ProductCategory { get; set; }
-    public float ProductDiscount { get; set; } // Thêm thuộc tính Discount
-    [JsonConstructor]
+    public float ProductDiscount { get; set; } 
+    //khởi tạo constructers
     public Product(string productId,string productName, int productQuantity, int productPrice, string productCategory, string productManufacturer)
     {
         ProductId = productId;
@@ -23,7 +22,7 @@ public class Product : ISerializable
         ProductManufacturer = productManufacturer;
         ProductDiscount = 0;
     }
-
+    //serialized
     protected Product(SerializationInfo info, StreamingContext context)
     {
         ProductId = info.GetString("ProductId");
@@ -34,7 +33,6 @@ public class Product : ISerializable
         ProductManufacturer = info.GetString("ProductManufacturer");
         ProductDiscount = info.GetSingle("ProductDiscount");
     }
-
     public void GetObjectData(SerializationInfo info, StreamingContext context)
     {
         info.AddValue("ProductId", ProductId);
@@ -45,12 +43,7 @@ public class Product : ISerializable
         info.AddValue("ProductManufacturer", ProductManufacturer);
         info.AddValue("ProductDiscount", ProductDiscount);
     }
-
-    public bool CheckStock()
-    {
-        return ProductQuantity > 0;
-    }
-
+    //hàm giảm SL
     public void ReduceStock(int amount)
     {
         if (ProductQuantity > 0)
@@ -62,18 +55,7 @@ public class Product : ISerializable
             Console.WriteLine("Out of stock!");
         }
     }
-
-
-    public void UpdatePrice(int newPrice)
-    {
-        ProductPrice = newPrice;
-    }
-
-    public void UpdateStock(int newQuantity)
-    {
-        ProductQuantity = newQuantity;
-    }
-
+    //tính tổng tiền thanh toán
     public float amountCal(int price, int quantity, float discount)
     {
         return price * quantity * (1 - discount / 100);

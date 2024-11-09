@@ -3,7 +3,7 @@
   <Class Name="back_menu">
     <Position X="1.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAgAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>back_menu.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -18,7 +18,7 @@
   <Class Name="list_Manager" BaseTypeListCollapsed="true">
     <Position X="3.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAgAAAgAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAgAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>list_Manager.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.826" Collapsed="true" />
@@ -34,14 +34,14 @@
   <Class Name="ProductList">
     <Position X="7" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAQ=</HashCode>
       <FileName>list_product.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="list_Staff" BaseTypeListCollapsed="true">
     <Position X="11.75" Y="2.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAIgAAgAAAAAAAgAAAAAQAAgACAAAAAIAAAAAAAAAAI=</HashCode>
+      <HashCode>AAIgAAgAAAAAAAAAAAAAQAAgACAAAEAIAAAAAAAAAAI=</HashCode>
       <FileName>list_Staff.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.695" Collapsed="true" />
@@ -49,7 +49,7 @@
   <Class Name="StaffList">
     <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>list_Staff.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -71,7 +71,7 @@
   <Class Name="THE4SMART.Staff">
     <Position X="5" Y="3.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAgAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>back_user.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -85,7 +85,7 @@
   <Class Name="THE4SMART.form_homepage" Collapsed="true">
     <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>/2AAB/A0AGIEZJCUYYSAcCTiAHt4hMSOUBAAycBDJvA=</HashCode>
+      <HashCode>/0AAB/A0AGIEZJCEY4SAcCTiAGtABcSMUBAAycBDJnA=</HashCode>
       <FileName>form_homepage.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -97,14 +97,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="THE4SMART.Program" Collapsed="true">
-    <Position X="1.25" Y="4.75" Width="1.5" />
+    <Position X="1.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="THE4SMART.Properties.Resources" Collapsed="true">
-    <Position X="1.25" Y="2.5" Width="1.5" />
+    <Position X="1.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
@@ -120,6 +120,27 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAABAAAACAAAACAAAAAAAAAAAAAQAAAAA=</HashCode>
       <FileName>form_aboutus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManagerList" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>list_Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductWrapper" Collapsed="true">
+    <Position X="1.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>list_product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaffWrapper" Collapsed="true">
+    <Position X="5.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>list_Staff.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
